@@ -1,0 +1,54 @@
+package ex05;
+
+import java.util.Random;
+
+public class EmpImpl implements Emp {
+
+	//property(¸É¹öº¯¼ö)
+	private String dept;
+	private String name;
+	private int sal;
+	private Random ran;
+	
+	public EmpImpl() {
+		
+	}
+	
+	public EmpImpl(String name) {
+		this.name=name;
+	}
+	public EmpImpl(Random ran) {
+		this.ran=ran;
+	}
+	public EmpImpl(String d, String n) {
+		dept=d; name=n;
+	}
+	public EmpImpl(String d, String n, int s) {
+		dept=d; name=n; sal=s;
+	}
+	
+	@Override
+	public void info1() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void info2() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void info3() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void info4() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

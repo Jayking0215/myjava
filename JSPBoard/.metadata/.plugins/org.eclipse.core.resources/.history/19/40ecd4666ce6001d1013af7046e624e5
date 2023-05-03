@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="../index.jsp" method="post">
+		<table>
+			<tr>
+				<td><label>제목</label></td>
+				<td><input></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

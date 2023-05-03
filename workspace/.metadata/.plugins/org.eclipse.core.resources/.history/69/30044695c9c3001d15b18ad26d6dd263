@@ -1,0 +1,29 @@
+package day07;
+//이클립스 템플릿 만들기
+//템플릿 불러오기: ctrl+space+"myswing"
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;//awt의 서브패키지...서브패키지는 별도로 명시해야함
+
+public class MyGui extends JFrame {
+
+	Container cp;
+	JPanel p = new JPanel();
+
+	public MyGui() {
+		super("::MyGui::");
+		cp = this.getContentPane();//기본이 BorderLayout
+		cp.add(p);//기본이 CENTER
+		p.setBackground(Color.white);
+
+		//창닫기
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}//생성자
+
+	public static void main(String[] args) {
+		MyGui my = new MyGui();
+		my.setSize(500, 500);
+		my.setVisible(true);
+	}
+
+}

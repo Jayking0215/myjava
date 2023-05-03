@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP 웹사이트 게시판</title>
+</head>
+<%!
+	int idx=1;
+	String title=request.getParameter("title");
+	String writer=request.getParameter("writer");
+	String content=request.getParameter("content");
+	String writeDate="2023-04-29";
+	int count=100;
+%>
+<body>
+	<h1>MVC1 게시판</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><%=idx%></td>
+				<td><%=title%></td>
+				<td><%=writer%></td>
+				<td><%=writeDate%></td>
+				<td><%=count%></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="Board/write.jsp">글쓰기</a>
+</body>
+</html>

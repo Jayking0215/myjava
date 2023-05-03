@@ -1,0 +1,28 @@
+package com.ssamz.web.user;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Connection;
+
+public class InsertUsetText {
+	
+	public static void main(String[] args) {
+		//JDBC관련 변수	
+		Connection conn=null;
+			
+		try {
+			//JDBC 1단계 : 드라이브 객체 로딩
+			DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+			//JDBC 2단계 : 커넥션 연결
+			String jdbcUrl="jdbc:h2:tcp://localhost/~/test";
+			conn=DriverManager.getConnection(jdbcUrl, "sa", "");
+			
+			if(conn!=null) {
+				System.out.println("H2 연결 성공: "+conn.toString());
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,21 @@
+package board.controller;
+
+import javax.servlet.http.*;
+import javax.servlet.http.HttpServletResponse;
+
+import common.controller.AbstractAction;
+import com.oreilly.servlet.*;
+import com.oreilly.servlet.multipart.*;
+import java.io.*;
+
+public class BoardEditAction extends AbstractAction {
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		//0. post방식일때 한글 처리 ==> EncodingFilter 통해 처리
+		//1. 파일 업로드 처리
+		
+		//2. 
+	}
+
+}

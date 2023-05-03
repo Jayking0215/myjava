@@ -1,0 +1,46 @@
+package memo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import common.util.DBUtil;
+
+public class BoardDAO {
+	private Connection con;
+	private PreparedStatement ps;
+	private ResultSet rs;
+	
+	
+	public void insertBoard(BoardVO vo) throws SQLException{
+		try {
+			con=DBUtil.getCon();
+			StringBuilder buf=new StringBuilder("insert into bbs(seq, title, writer, content)")
+						.append(" values(select nvl(max(seq),0)+1 from bbs),?,?,?)");
+			String sql=buf.toString();
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, vo.getTitle());
+			ps.setString(2, vo.getWriter());
+			ps.setString(3, vo.getContent());
+			
+			ps.executeUpdate();
+		}finally {
+			close();
+		}
+		
+	}
+	
+	//DB연결 자원반납 메서드
+	public void close() throws SQLException{
+		try {
+			if(rs!=null) rs.close();
+			if(ps!=null) ps.close();
+			if(con!=null) ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}//close()----
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;JETFLEX&apos; to &apos;JDBS/src&apos;&#x0D;&#x0A;- Original project: &apos;Begin&apos;&#x0D;&#x0A;- Destination element: &apos;JDBS/src&apos;&#x0D;&#x0A;- Original element: &apos;Begin/src/JETFLEX&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=JDBS/src" element1="/src&lt;JETFLEX" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1679894000708" version="1.0"/>
+</session>

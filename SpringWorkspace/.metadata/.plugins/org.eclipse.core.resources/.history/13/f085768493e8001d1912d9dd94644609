@@ -1,0 +1,53 @@
+package com.memo.model;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
+//컨트롤러 계층 : @Controller, 
+//서비스 계층 : @Service,
+//영속성 계층(Persistence Layer): @Repository
+//[주의] servlet-context.xml에 component-scan대상으로 패키지 등록해야함
+
+@Repository
+public class MemoDAOMyBatis implements MemoDAO {
+	
+	private SqlSessionTemplate session;
+
+	@Override
+	public int insertMEmo(MemoVO memo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<MemoVO> listMemo(int start, int end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(MemoVO memo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMEmo(int no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public MemoVO getMemo(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

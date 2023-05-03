@@ -1,0 +1,26 @@
+package user.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import common.controller.AbstractAction;
+import user.model.UserDAO;
+
+public class LoginEndAction extends AbstractAction {
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		String userid=req.getParameter("userid");
+		String pwd=req.getParameter("pwd");
+		String saveId=req.getParameter("saveId");
+		if(userid==null||pwd==null||userid.trim().isEmpty()||pwd.trim().isEmpty()) {
+			this.setViewPage("login.do");
+			this.setRedirect(true);
+			return;
+		}
+		UserDAO userDao=new UserDAO();
+		UserVO user=userDao.loginCheck(userid, pwd);
+		//아이디와 pwd가 일치하지 않으면 NotUserException을 발생시킴
+		
+	}
+}

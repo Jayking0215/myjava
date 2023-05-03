@@ -1,0 +1,4 @@
+127.0.0.1 - - [01/May/2023:20:07:45 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [01/May/2023:20:07:46 +0900] "GET /BBS/servlet/board.GetBoardListServlet HTTP/1.1" 404 852
+0:0:0:0:0:0:0:1 - - [01/May/2023:20:07:47 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [01/May/2023:20:07:56 +0900] "GET /BBS/servlet/board.GetBoardListServlet.do HTTP/1.1" 404 855

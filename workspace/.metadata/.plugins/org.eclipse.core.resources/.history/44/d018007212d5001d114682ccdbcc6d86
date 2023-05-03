@@ -1,0 +1,172 @@
+package memo.app;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;//awt의 서브패키지...서브패키지는 별도로 명시해야함
+import java.util.*;
+import java.util.List;
+import java.text.*;
+/**
+ * -----------------------------------
+ * @author 김재모
+ * 작서일: 2023-04-05
+ * 버 전: 1.1
+ * 한줄 메모장 애플리케이션의 화면을 담당하는 클래스
+ * -----------------------------------
+ *
+ *MFC(c++),JFC(java swing)
+ * MVC 패턴===> 웹 mvc패턴 도입
+ * 
+ * 모델1 방식 : mvc패턴을 적용하지 않을 때
+ * 모델2 방식 : mvc패턴 적용
+ * 
+ * Model  :  DB접근 로직(DB처리 로직을 갖는다. CRUD) [Persistence Layer-영속성(영구저장하는 속성) 계층]
+ * 			VO(Value Object)=DTO(Data Transfer Object) DAO(Date Access Object):DB에 접근해서 CRUD로직 수행,
+ * View   :  화면단 (Presentatioin Layer) - Swing, HTML(JSP)
+ * 
+ * Controller: Model View사이에서 제어하는 역할을 담당하는 계층. Event Handler,  Servlet/SpringFramework Controller
+ * 
+ * MemoAppView:=> GUI /View 담당 [Presentatioin Layer]
+ * XXXDAO: DB접근 로직(DB처리 로직을 갖는다. CRUD)
+ * 		   Data Access Object  [Persistence Layer-영속성 계층]
+ * XXXVO/XXXDTO [Domain Layer]
+ *  Value Object/ Data Transfer Object
+ * 	: 사용자가 입력한 값을 담거나 DB에서 가져온 값을 갖고 있는
+ *    객체
+ * 
+ * */
+//버튼 레이블 등 객체선언하고, panel먼저 붙이고, 거기에 버튼 넣기...View단에서 화면에 보여지는 모든것 처리하기
+public class MemoAppView extends JFrame {
+
+	Container cp;
+	JPanel pN = new JPanel(new GridLayout(2,1));//2행1열
+	JPanel pS = new JPanel();//default:FlowLayout
+	
+	JPanel pN_sub = new JPanel(new GridLayout(2,1));
+	JPanel pN_sub_1=new JPanel();
+	JPanel pN_sub_2=new JPanel();
+	
+	JTextArea ta;
+	JButton btAdd,btList,btDel,btEdit,btEditEnd,btFind;
+	JLabel lbTitle,lbName,lbDate,lbNo,lbMsg;
+	JTextField tfName,tfDate,tfNo,tfMsg;
+	
+	MemoHandler handler;//외부에서 핸들러 가져오기위한 생성(controller)
+	
+	public MemoAppView() {
+		super("::MemoAppView::");
+		cp = this.getContentPane();//기본이 BorderLayout
+		
+		ta=new JTextArea("::한줄 메모장::");
+		JScrollPane sp=new JScrollPane(ta);//ta밑에 sp넣기(ta에는 스크롤바 없기때문에)
+		
+		cp.add(sp,"Center");
+		cp.add(pN,"North");
+		cp.add(pS,"South");
+		ta.setEditable(false);//편집불가,읽기전용
+		
+		lbTitle=new JLabel("❤❤ 한줄 메모장❤❤",JLabel.CENTER);
+		pN.add(lbTitle);//pN에 lbTitle붙이기(lbTitle먼저 생성해야함)
+		lbTitle.setFont(new Font("Serif",Font.BOLD,28));
+
+		pN.add(pN_sub);
+		pN_sub.add(pN_sub_1);
+		pN_sub.add(pN_sub_2);
+		
+		pN_sub_1.setLayout(new FlowLayout(FlowLayout.LEFT));//버튼들 왼쪽정렬
+		pN_sub_1.add(lbName=new JLabel("작성자: "));
+		pN_sub_1.add(tfName=new JTextField(15));
+		pN_sub_1.add(lbDate=new JLabel("작성일: "));
+		pN_sub_1.add(tfDate=new JTextField(15));
+		pN_sub_1.add(lbNo=new JLabel("글번호: "));
+		pN_sub_1.add(tfNo=new JTextField(15));
+		
+		pN_sub_2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		pN_sub_2.add(lbMsg=new JLabel("메모내용: "));
+		pN_sub_2.add(tfMsg=new JTextField(40));
+		pN_sub_2.add(btAdd=new JButton("글등록"));
+		pN_sub_2.add(btList=new JButton("글목록"));
+		
+
+		tfDate.setEditable(false);//편집불가
+		tfNo.setEditable(false);
+		tfDate.setForeground(Color.blue);
+		String date=this.getSysDate();//오늘 날짜 얻어오기
+		tfDate.setText(date);
+		tfDate.setFont(new Font("Serif",Font.BOLD,14));
+		tfDate.setHorizontalAlignment(JTextField.CENTER);//가로로 가운데 정렬
+		
+		
+		pS.add(btDel=new JButton("글삭제"));
+		pS.add(btEdit=new JButton("글수정"));
+		pS.add(btEditEnd=new JButton("글수정처리"));
+		pS.add(btFind=new JButton("글검색"));
+		
+		//리스너 부착
+		//MemoHandler와 MemoAppView가 연동하기 위해서는 생성자에서 this를 넘겨준다.
+		handler=new MemoHandler(this);//핸들러 자기 자신의 정보를 this를 통해 전달
+		btAdd.addActionListener(handler);
+		btList.addActionListener(handler);
+		btDel.addActionListener(handler);
+		btEdit.addActionListener(handler);
+		btEditEnd.addActionListener(handler);
+		btFind.addActionListener(handler);
+		
+		//창닫기
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}//생성자
+	
+	/** 메시지를 대화창에 보여주는 메서드
+	 * */
+	public void showMessage(String str) {
+		JOptionPane.showMessageDialog(this, str);
+	}//
+	
+	/** 입력 필드를 모두 빈문자열로 초기화하는 메서드
+	 * */
+	public void clearInput() {
+		tfNo.setText("");
+		tfName.setText("");
+		tfMsg.setText("");
+		tfName.requestFocus();//입력 포커스 주기
+	}//
+	
+	
+	/**현재 날짜를 yyyy-MM-dd 포멧의 문자열로 변환하여 반환하는 메서드*/
+	public String getSysDate() {
+		Date today=new Date();//java.util.Date
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//java.text.SimpleDateFormat
+		String str=sdf.format(today);
+		return str;
+		/*
+		 * Java		:yy년도	MM월		dd일		hh시간	mm분		ss초
+		 * Oracle	:yy년도	mm월		dd일		hh시간	mi분		ss초
+		 * */
+	}
+	/**전체 메모 글을 TextArea에 출력해주는 메서드
+	 * */
+	public void showTextArea(List<MemoVO> arr) {
+		if(arr==null||arr.size()==0) {//null값 확인 필수
+			ta.setText("데이터가 없습니다.");
+		}else {
+			ta.setText("");//빈 문자열로 초기화
+			for(MemoVO vo:arr) {
+				ta.append("    "+vo.getNo()+"\t"+vo.getName()+"\t"+vo.getMsg()+"\t"+vo.getWdate()+"\n");
+			}//for---
+		}
+	}//-----
+
+	public String showInputDialog(String str) {//입력칸 팝업
+		String res=JOptionPane.showInputDialog(str);
+		return res;
+	}//-----
+
+	public static void main(String[] args) {//프로그램의 시작점
+		MemoAppView my = new MemoAppView();
+		my.setSize(900, 600);
+		my.setResizable(false);//프레임 사이즈 조정 불가
+		my.setVisible(true);
+	}//-----
+
+
+
+}

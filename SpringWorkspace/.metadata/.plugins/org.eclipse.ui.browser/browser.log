@@ -1,0 +1,10 @@
+
+5월 03, 2023 16:14:28.684 NEW SESSION
+5월 03, 2023 16:14:28.688 [379812:379816:0503/161428.678:ERROR:chrome_browser_cloud_management_controller.cc(162)] Cloud management controller initialization aborted as CBCM is not enabled.
+5월 03, 2023 16:14:28.802 [379812:379816:0503/161428.802:ERROR:api_wrapper.cc(102)] Calling IsEnclaveTypeSupported, error code 0
+5월 03, 2023 16:14:30.45 [379812:379816:0503/161430.045:ERROR:assistance_home_client.cc(32)] File path C:\Users\user\AppData\Local\Microsoft\Edge\User Data\Default
+5월 03, 2023 16:14:41.288 [379812:379816:0503/161441.287:ERROR:device_event_log_impl.cc(222)] [16:14:41.287] USB: usb_device_handle_win.cc:1046 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)
+5월 03, 2023 16:14:42.758 [379812:379816:0503/161442.757:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+5월 03, 2023 16:14:58.152 [379812:379816:0503/161458.151:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+5월 03, 2023 16:15:01.381 [379812:379816:0503/161501.380:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.
+5월 03, 2023 16:15:11.462 [379812:379816:0503/161511.461:ERROR:fallback_task_provider.cc(124)] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/739782.

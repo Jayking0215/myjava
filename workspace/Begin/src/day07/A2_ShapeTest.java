@@ -1,0 +1,52 @@
+package day07;
+
+public class A2_ShapeTest {
+
+	public static void main(String[] args) {
+		System.out.println("각 도형의 면적을 구합시다");
+		System.out.printf("가로 %d, 세로 %d 인 도형의 면적---\n", 8, 10);
+		//사각형 객체 생성 후 area()호출...다른 클래스에서 매서드 호출시 객체 생성후 메서드 호출
+		Rectangle rect=new Rectangle();
+		rect.area(8, 10);
+		
+		//직각삼각형 객체 생성 후 area()호출
+		Triangle tri=new Triangle();
+		tri.area(8, 10);
+		
+		//원(r=8) 객체 생성 후 area()호출
+//		Circle cir=new Circle();[x]
+		//Circle은 추상클래스
+		//추상클래스는 타입 선언은 가능하지만 instance화 할 수 없다(=new 불가)
+		Circle cir=new SubCircle();//[o]
+		//부모타입으로 선언하고 자식타입으로 객체생성
+		cir.area(8,0);//SubCircle에 int 2개짜리는 반환값이 없다. Overload된 타입이 우선 적용
+//		cir.area(8);//오류: 부모타입의 변수는 접근 가능하지만, 강제 형변환으로 가능
+		((SubCircle)cir).area(8);
+	
+		SubCircle cir2=new SubCircle();
+		cir2.area(10);
+		
+		A2_Shape r=new Rectangle();
+		r.area(5,6);
+		
+		//[1]
+		//rect, tri, cir, cir2를 배열에 저장하고 반복문으로 각 도형의 면적(12, 24)을 출력
+		A2_Shape[] arr= {rect, tri, cir, cir2, r};
+//		for(int i=0; i<arr.length; i++) {
+//			if(arr[i] instanceof Circle) {
+//				((SubCircle)arr[i]).area(12);
+//			}else {
+//				arr[i].area(12,  24);
+//			}
+//		}
+		for(A2_Shape sp:arr) {
+			if(sp instanceof SubCircle) {
+				((SubCircle)sp).area(12);
+			}else {
+			sp.area(12, 24);
+			}
+			System.out.println("--------------");
+		}
+	}//main()
+
+}//

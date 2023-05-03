@@ -1,0 +1,16 @@
+package com.memo.model;
+
+import java.util.List;
+
+public interface MemoDAO {
+
+	int insertMEmo(MemoVO memo);
+	
+	int getTotalCount();
+	List<MemoVO> listMemo(int start, int end);
+	
+	int update(MemoVO memo);
+	int deleteMemo(int no);
+	
+	MemoVO getMemo(int no);
+}

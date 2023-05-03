@@ -1,0 +1,26 @@
+package ex04;
+
+import java.util.Date;
+
+public class MessageImpl implements Message {
+	
+	//property
+	private String name;
+	private String greeting;
+	
+	private Date today;
+	private Random ran;
+
+	@Override
+	public void sayHello() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void sayHi(String... names) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

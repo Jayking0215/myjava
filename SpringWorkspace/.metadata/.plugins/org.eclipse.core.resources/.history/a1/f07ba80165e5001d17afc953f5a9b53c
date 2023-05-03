@@ -1,0 +1,11 @@
+package ex02;
+
+public class HellowApp {
+
+	public static void main(String[] args) {
+		
+		MessageBean mb=new MessageBeanEn();
+
+	}
+
+}

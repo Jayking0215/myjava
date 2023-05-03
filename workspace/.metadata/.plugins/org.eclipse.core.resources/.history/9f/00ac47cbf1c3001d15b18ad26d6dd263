@@ -1,0 +1,37 @@
+package day07;
+
+abstract public class A3_Animal {//추상클래스
+
+	abstract public void crySound();//추상메서드...public 생략가능
+	abstract void getBaby(int num);
+}//A3_Animal
+
+class Dog extends A3_Animal{
+	@Override 
+	public void crySound() {
+		System.out.println("멍멍");
+	}
+	protected void getBaby(int n) {//생략형보다 넓은 범위인 protected
+		System.out.println(n+"마리의 새끼를 낳았어요");
+	}
+}//Dog
+
+class Cat extends A3_Animal{
+	@Override
+	public void crySound() {
+		System.out.println("야옹야옹");
+	}
+	protected void getBaby(int n) {
+		System.out.println(n+"마리의 새끼를 낳았어요");
+	}
+}//Cat
+
+class Duck extends A3_Animal{
+	@Override
+	public void crySound() {
+		System.out.println("꽥꽥");
+		}
+	protected void getBaby(int num) {
+		System.out.println(num+"개의 알을 낳았어요");
+	}
+}//Duck

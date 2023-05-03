@@ -1,0 +1,257 @@
+# 오라클 객체
+[1] 시퀀스(sequence)
+
+--CREATE SEQUENCE 시퀀스명 
+[INCREMENT BY n] --N만큼 증가
+[START WITH n] --N부터 시작
+[{MAXVALUE n | NOMAXVALE}] --최대값|최대값 제한X
+[{MINVALUE n | NOMINVALUE}] --최소값|최소값 제한X
+[{CYCLE | NOCYCLE}] --순환(반복)
+[{CACHE | NOCACHE}] --메모리에 있다가 SEQ발동 때 불러오기
+
+-----------------------------------------------------------
+--DEPT의 부서번호(2BYTE) 사용할 시퀀스 생성
+--시작값:50
+--증가치:10
+--최대값:90
+--최소값:50
+--NOCYCLE...PRIMARY KEY는 CYCLE주면 안됨
+DESC DEPT;
+CREATE SEQUENCE DEPT_SEQ
+START WITH 50
+INCREMENT BY 10
+MAXVALUE 90
+MINVALUE 50
+NOCYCLE
+NOCACHE;
+
+-- 데이터사전에서 조회
+--USER_OBJECTS 또는 USER_SEQUENCES에서 조회가능
+SELECT * FROM USER_OBJECTS WHERE OBJECT_TYPE='SEQUENCE';
+SELECT * FROM USER_SEQUENCES;
+
+--시퀀스 현재값 조회: 시퀀스명.CURRVAL
+--시퀀스 다음값 조회: 시퀀스명.NEXTVAL
+--:[주의] NEXTVAL을 하지 않은채 CURRVAL을 부를 수 없다.=>에러
+SELECT DEPT_SEQ.NEXTVAL FROM DUAL;
+SELECT DEPT_SEQ.CURRVAL FROM DUAL;
+
+INSERT INTO DEPT(DEPTNO, DNAME, LOC)
+VALUES(DEPT_SEQ.NEXTVAL, 'EDUCATION'||DEPT_SEQ.CURRVAL,'SEOUL');
+
+SELECT * FROM DEPT;
+
+ROLLBACK;
+--------------------------------------------------------------------------
+[1]# 시퀀스 수정/삭제
+--[주의] START WITH는 수정 불가
+--ALTER SEQUENCE 시퀀스명
+--INCREMENT BY N
+--MAXVALUE N|NOMAXVALUE
+--MINVALUE N|NOMINVALUE
+--CYCLE|NOCYCLE
+--CACHE N|NOCACHE
+
+--삭제
+--DROP SEQUENCE 시퀀스명
+
+--문1]DEPT_SEQ를 아래와 같이 수정하세요
+--MAXVALUE 99
+--MINVALUE 50
+--증가치 5
+--CYCLE가능
+--CACHE 10
+ALTER SEQUENCE DEPT_SEQ
+MAXVALUE 99
+MINVALUE 50
+INCREMENT BY 5
+CYCLE
+CACHE 10;--(CACHE는 껏다켜면 날아감,,50~95까지 10개 CACHE저장해둿다가 불러옴)
+--조회
+SELECT * FROM DEPT_SEQ;
+--다음위치 확인(95에서 다시 50으로 돌아옴)
+SELECT DEPT_SEQ.NEXTVAL FROM DUAL;
+--삭제 후 조회
+DROP SEQUENCE DEPT_SEQ;
+SELECT * FROM USER_SEQUENCES;
+
+[2]#VIEW: 데이터의 복잡성와 복잡한 질의를 감소시킴
+--테이블의 일부만 가지고 데이터를 조작할 때 사용(탈퇴/휴먼회원은 이용을 못하게 제한할때 등)
+--CREATE VIEW 뷰이름
+--	AS
+--	SELECT 컬럼명1, 컬럼명2...
+--	FROM 뷰에 사용할 테이블명
+--	WHERE 조건뷰이름;
+
+--문1]EMP테이블에서 20번 부서의 모든 컬럼을 포함하는 EMP20_VIEW를 생성하라.
+CREATE VIEW EMP20_VIEW
+    AS
+    SELECT *
+    FROM EMP
+    WHERE DEPTNO=20;
+/*
+=>ERROR발생 INSUFFICIENT PRIVILEGES:뷰 생성 권한을 부여해야 생성 가능하다.(SCOTT이 권한이 없음)
+SYSTEM, SYS계정으로 접속해서 SCOTT에게 권한 부여
+SHOW USER--USER가 SYSTEM인지 확인
+CONN SYSTEM/Abcd1234--system계정으로 접속
+GRANT CREATE VIEW TO SCOTT;
+*/
+
+--데이터 사전에서 조회
+--USER_VIEWS
+SELECT * FROM USER_VIEWS;
+--데이터 조회
+SELECT * FROM EMP20_VIEW;
+
+--[문1] EMP테이블에서 30번 부서만 EMPNO를 EMP_NO로 ENAME을 NAME으로
+--	SAL를 SALARY로 바꾸어 EMP30_VIEW를 생성하여라.
+CREATE VIEW EMP30_VIEW
+AS
+SELECT EMPNO EMP_NO, ENAME NAME, SAL SALARY FROM EMP
+WHERE DEPTNO=30;
+--확인
+SELECT * FROM EMP30_VIEW;
+--[문2] 고객테이블의 고객 정보 중 나이가 19세 이상인 고객의 정보를 확인하는 뷰를 만들어보세요.
+--	단 뷰의 이름은 MEMBER_19로 하세요.
+CREATE VIEW MEMBER_19
+AS
+SELECT * FROM MEMBER
+WHERE AGE>=19;
+--확인
+SELECT * FROM MEMBER_19;
+
+#VIEW 수정
+--OR RAPLACE옵션을 주어 수정
+CREATE OR REPLACE VIEW MEMBER_19
+AS
+SELECT * FROM MEMBER
+WHERE AGE <19;
+--확인
+SELECT * FROM MEMBER_19;
+
+##JOIN과 함께 쓰는 VIEW 실습
+--[문1] 부서별 급여총액, 사원수, 평균급여(소수점2자리까지), 최소급여,최대급여를 출력하는 view를 만드세요
+--뷰이름: emp_statistic
+CREATE OR REPLACE VIEW EMP_STATISTIC
+AS
+SELECT DEPTNO, SUM(SAL) SUM_SAL, COUNT(EMPNO) CNT, 
+ROUND(AVG(SAL),2) AVG_SAL, MIN(SAL) MIN_SAL, MAX(SAL) MAX_SAL
+FROM EMP
+GROUP BY DEPTNO;
+
+SELECT * FROM EMP_STATISTIC ORDER BY DEPTNO;
+--[2] 카테고리, 상품을 join하여 보여주는 view를 생성하세요
+--뷰이름: products_view
+CREATE OR REPLACE VIEW PRODUCTS_VIEW
+AS
+SELECT CATEGORY_NAME, PRODUCTS_NAME, OUTPUT_PRICE, COMPANY
+FROM CATEGORY C JOIN PRODUCTS P
+ON C.CATEGORY_CODE = P.CATEGORY_FK;
+
+SELECT * FROM PRODUCTS_VIEW
+WHERE CATEGORY_NAME LIKE '%도서%';--도서상품만 검색
+
+-------------------------------------
+# VIEW 수정
+SELECT * FROM EMP20_VIEW;
+UPDATE EMP20_VIEW SET SAL=SAL*1.1 WHERE ENAME='SCOTT';
+
+SELECT * FROM EMP;--VIEW는 원래 테이블의 가상테이블이지만 수정하면 둘 다 바뀜
+--단, GROUP BY 절을 이용해서 생성한 VIEW는 DML조작이 불가능하다.
+ROLLBACK;--VIEW를 써도 ROLLBACK/COMMIT해야함
+
+# VIEW의 옵션
+--<1> WITH READ ONLY: 읽기전용으로만 VIEW사용할 때
+--<2> WITH CHECK OPTION: VIEW를 생성할때 주었던 조건에 맞지않는 데이터가 INSERT/UPDATE되는것을 허용하지 않는다.
+--<1>
+CREATE OR REPLACE VIEW EMP10_VIEW
+AS
+SELECT EMPNO, ENAME, JOB, DEPTNO FROM EMP 
+WHERE DEPTNO=10 WITH READ ONLY;
+
+SELECT * FROM EMP10_VIEW;
+--원래 TABLE수정_가능
+UPDATE EMP SET JOB='ANALYST' WHERE EMPNO=7782;
+--VIEW TABLE(R) 수정_불가능
+UPDATE EMP10_VIEW SET JOB='ANALYST' WHERE EMPNO=7782;
+
+--<2>__WHERE절을 엄격히 따른다.
+--JOB이 SALESMAN인 사원 정보만 모아 EMP_SALES_VIEW를 생성하되 WITH CHECK OPTION을 줘서 생성
+CREATE OR REPLACE VIEW EMP_SALES_VIEW
+AS
+SELECT * FROM EMP
+WHERE JOB='SALESMAN' WITH CHECK OPTION;
+--WITH CHECK OPTION은 수정 가능
+SELECT * FROM EMP_SALES_VIEW;
+UPDATE EMP_SALES_VIEW SET COMM=100 WHERE EMPNO=7844;
+SELECT * FROM EMP;
+--그러나 CHECK OPTION의 WHERE절을 위반한것은 수정불가....(WHERE절 기준이 JOB)
+UPDATE EMP_SALES_VIEW SET JOB='MANAGER' WHERE EMPNO=7844;
+-------------------------------------------------------------
+# INLINE VIEW
+--FROM절에 사용한 SUQUERY를 INLINE VIEW라고 한다._DAY07
+
+------------------------보충수업----------------------------------
+RANK() OVER(분석절) : 분석절을 기준으로 랭킹을 매긴다
+ROW_NUMBER() OVER(분석절): 분석절을 기준으로 행번호를 매긴다
+
+분석절
+PARTITION BY 컬럼명 : 컬럼명을 기준으로 그룹핑을 한다
+ORDER BY 컬럼명 : 컬럼명을 기준으로 정렬한다
+
+
+SELECT RANK() OVER(ORDER BY SAL DESC) RNK, EMP.*
+FROM EMP;
+
+업무별로 급여를 많이받는 사원의 순위를 매기세요
+
+SELECT RANK() OVER(PARTITION BY JOB ORDER BY SAL DESC) RNK, EMP.*
+FROM EMP;
+
+SELECT ROW_NUMBER() OVER(PARTITION BY JOB ORDER BY SAL DESC) RN, EMP.*
+FROM EMP;
+
+업무별로 제일 급여가 많은 사람 1명만 출력하세요
+SELECT * FROM (
+SELECT RANK() OVER(PARTITION BY JOB ORDER BY SAL DESC) RNK, EMP.*
+FROM EMP
+)
+WHERE RNK=1;
+
+--------------------------------------------------------------------------------
+[3] INDEX
+--CREATE INDEX 인덱스명 ON 테이블명(컬럼명)
+
+--MEMBER테이블의 NAME컬럼에 INDEX를 생성해보자
+CREATE INDEX MEMEBER_NAME_IDX ON MEMBER(NAME);--오타난 상태로 생성했음 주의
+--=>NAME컬럼값을 다 읽는다
+--=>NAME컬럽값에 대해 오름차순 정렬을 한다.
+--=>ROWID와 NAME값을 저장하기 위한 저장공간을 할당한다.
+--=>할당된 공간에 값을 저장한다.
+
+데이터사전에서 조회 3가지 방법
+-- USER_OBJECTS: 전체조회
+SELECT * FROM USER_OBJECTS WHERE OBJECT_TYPE='INDEX';
+-- USER_INDEXES: 인덱스만 조회
+SELECT * FROM USER_INDEXES WHERE TABLE_NAME='MEMBER';
+-- USER_IND_COLUMNS : 인덱스 컬럼 정보
+SELECT * FROM USER_IND_COLUMNS WHERE INDEX_NAME='MEMEBER_NAME_IDX';
+--WHERE TABLE_NAME='MAMBER';--인덱스명 모를땐 테이블명으로
+
+SELECT * FROM MEMBER WHERE NAME LIKE '%동%';
+--문1]상품 테이블에서 인덱스를 걸어두면 좋을 컬럼을 찾아 인덱스를 만드세요.
+CREATE INDEX PRODUCTS_CATEGORY_FK_IDX ON PRODUCTS (CATEGORY_FK);--JOIN할때 쓰는 외래키로 설정
+CREATE INDEX PRODUCTS_EP_CODE_FK_IDX ON PRODUCTS (EP_CODE_FK);
+--조회
+SELECT * FROM USER_INDEXES WHERE TABLE_NAME='PRODUCTS';
+SELECT * FROM USER_IND_COLUMNS WHERE TABLE_NAME='PRODUCTS';
+
+#인덱스 수정
+--수정 불가능...DROP하고 다시 생성해야한다.
+#인덱스 삭제--권한 필요한 기능
+--DROP INDEX 인덱스명;
+DROP INDEX PRODUCTS_CATEGORY_FK_IDX;
+
+[4] SYNONYM(동의어)
+다른 유저의 객체를 참조할때 사용한다.
+--CREATE [PUBLIC] SYNONYM 시노님명 FOR OBJECT_NAME;

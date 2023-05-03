@@ -1,0 +1,8 @@
+package ex01;
+
+public class MessageBeanEn {
+
+	public void sayHello(string name) {
+		System.out.println("Hello "+name+"~~~");
+	}
+}

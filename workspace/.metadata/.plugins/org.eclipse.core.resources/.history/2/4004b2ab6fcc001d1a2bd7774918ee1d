@@ -1,0 +1,11 @@
+package day01;
+
+import java.sql.*;
+
+public class MemoInsert {
+
+	public static void main(String[] args) {
+
+	}
+
+}

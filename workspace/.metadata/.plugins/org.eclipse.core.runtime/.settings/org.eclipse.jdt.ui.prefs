@@ -1,0 +1,14 @@
+command=C\:\\Program Files\\Java\\jdk-11\\bin\\javadoc.exe
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="day09.A1_Outer$SInner"><rhs name\="day09.A1_Outer$SInner"/></lhs></history>
+content_assist_number_of_computers=17
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=22
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="java" deleted\="false" description\="" enabled\="true" name\="myswing">import javax.swing.*;&\#13;\r\nimport java.awt.*;&\#13;\r\nimport java.awt.event.*;//awt\uC758 \uC11C\uBE0C\uD328\uD0A4\uC9C0...\uC11C\uBE0C\uD328\uD0A4\uC9C0\uB294 \uBCC4\uB3C4\uB85C \uBA85\uC2DC\uD574\uC57C\uD568&\#13;\r\n&\#13;\r\npublic class MyGui extends JFrame{&\#13;\r\n&\#13;\r\n\tContainer cp;&\#13;\r\n\tJPanel p\=new JPanel();&\#13;\r\n\t&\#13;\r\n\tpublic MyGui() {&\#13;\r\n\t\tsuper("\:\:MyGui\:\:");&\#13;\r\n\t\tcp\=this.getContentPane();//\uAE30\uBCF8\uC774 BorderLayout&\#13;\r\n\t\tcp.add(p);//\uAE30\uBCF8\uC774 Center&\#13;\r\n\t\tp.setBackground(Color.white);&\#13;\r\n\t\t&\#13;\r\n\t\t//\uCC3D\uB2EB\uAE30&\#13;\r\n\t\tthis.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);&\#13;\r\n\t}//\uC0DD\uC131\uC790&\#13;\r\n&\#13;\r\n\tpublic static void main(String[] args) {&\#13;\r\n\t\tMyGui my\=new MyGui();&\#13;\r\n\t\tmy.setSize(500,500);&\#13;\r\n\t\tmy.setVisible(true);&\#13;\r\n\t}&\#13;\r\n&\#13;\r\n}&\#13;\r\n</template></templates>
+semanticHighlighting.abstractClass.bold=true
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

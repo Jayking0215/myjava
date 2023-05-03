@@ -1,0 +1,22 @@
+package day01;
+
+import java.sql.*;
+
+public class MemoInsert {
+
+	public static void main(String[] args) {
+		throws ClassNotFoundException, SQLException
+		//1.Driver 로딩
+		
+		//2.DB연결
+		
+		//3.SQL문 작성=>memo테이블에 Insert문 작성
+		
+		//4.Statement얻어오기
+		
+		//5.execute()호출
+		
+		//6.DB연결자원 반납하기
+	}
+
+}

@@ -1,0 +1,124 @@
+package memo.app;
+//DAO패턴 익히기
+import java.sql.*;
+import common.util.*;
+import java.util.*;
+
+/**
+ * @author user
+ * 영속석 계층(Persistence Layer)에 속함
+ * DAO(Data Access Object) : DB에 접근해서 CRUD의 로직을 수행하는 객체
+ * =>Model에 속함
+ * */
+public class MemoDAO {
+	private Connection con;
+	private PreparedStatement ps;
+	private ResultSet rs;
+	
+	/**
+	 * 한줄 메모장에 insert문을 수행하는 메서드(CRUD중 C)
+	 * */
+	public int insertMemo(MemoVO memo) throws SQLException{//insert해서 받을 값(매개변수)을 MemoVO를 통해 받는다.insert 갯수를 int로 설정.
+		try {
+			con=DButil.getCon();
+			//String sql="";-->String은 원본 불변성때문에 객체를 계속 생성하며 추가되기때문에 효율이 좋지 않다
+			//StringBuffer(구), StringBuilder(신):문자열 편집작업이 가능한 class
+			//							문자열을 메모리 버퍼에 넣고 수정,삽입,삭제 등을 수행
+			StringBuilder buf=new StringBuilder("insert into memo(no,name,msg,wdate)")
+					.append(" values(memo_seq.nextval,?,?,sysdate)");//append는 한칸 띄우고 작성하자
+			String sql=buf.toString();//buf를 문자열로 변경하는 과정 필요
+			
+			ps=con.prepareStatement(sql);
+			ps.setString(1, memo.getName());
+			ps.setString(2, memo.getMsg());
+			
+			int n=ps.executeUpdate();
+			return n;
+		}finally {
+			//db연결자원 반납
+			close();
+		}
+	}//-----
+	
+	/**전체 메모글을 가져오는 메서드
+	 * */
+	public List<MemoVO> listMemo() throws SQLException{//List타입으로 MemoVO 제네릭....웹에서는 ArrayList타입으로 받아온다(record가 다중행이기 때문).
+		try {
+			con=DButil.getCon();
+			StringBuilder buf=new StringBuilder("select rpad(no,10,' ') no, rpad(name,16,' ') name,")//함수로 받아올때는 별칭 필수
+									.append("rpad(msg,100,' ') msg, wdate from memo order by wdate desc");
+			String sql=buf.toString();//문자열로 변경
+			
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			
+			List<MemoVO> arr=makeList(rs);
+			return arr;
+		}finally {
+			close();
+		}
+	}//------
+	
+	public List<MemoVO> makeList(ResultSet rs) throws SQLException {
+		List<MemoVO> arr=new ArrayList<>();
+		while(rs.next()) {//컬럼 데이터 불러오기
+			int no=rs.getInt("no");//별칭no로 꺼내오기
+			String name=rs.getString("name");
+			String msg=rs.getString("msg");
+			java.sql.Date wdate=rs.getDate("wdate");
+			//오버로드
+			MemoVO memo=new MemoVO(no,name,msg,wdate);//하나의 record
+			arr.add(memo);//table
+		}//while---
+		return arr;
+	}//-----
+
+	/** 글번호로(PK)로 메모글을 가져오는 메서드 
+	 * */
+	public MemoVO selectMemo(int no) throws SQLException {
+		try {
+			con=DButil.getCon();
+			String sql="select no,name,msg,wdate from memo where no=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1,no);
+			rs=ps.executeQuery();
+			List<MemoVO> arr=makeList(rs);
+			if(arr!=null && arr.size()==1) {//null이 아니고 글이1개라면
+//				MemoVO memo=arr.get(0);
+//				return memo;//해당 글을 반환
+				return arr.get(0);
+			}
+			return null;//해당글이 없을 경우
+		}finally {
+			close();
+		}
+	}//-----
+	
+	
+	/**글번호로 메모글을 삭제하는 메서드
+	 * */
+	public int deleteMemo(int no) throws SQLException{
+		try {
+			con=DButil.getCon();
+			String sql="delete from memo where no=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, no);
+			return ps.executeUpdate();
+		} finally {
+			close();
+		}
+	}//-----
+	
+		/**
+	 * DB관련한 자원들을 반납하는 메서드
+	 * */
+	public void close() {
+		try {
+			if(rs!=null)rs.close();
+			if(ps!=null)ps.close();
+			if(con!=null)con.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}//
+}/////////////////////////

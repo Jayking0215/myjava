@@ -1,0 +1,14 @@
+package day07;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class MyJPanel extends JPanel{
+	
+	//바깥 여백을 반환하는 메서드
+	@Override
+	public Insets getInsets() {
+		Insets in=new Insets(10,10,10,10);//반시계방향
+		return in;
+	}
+}

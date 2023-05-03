@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<jsp:include page="/top.jsp"/>
+
+	<div class="container m2">
+		<h1>Board 글 보기</h1>
+		<br><br>
+		<a href="user/boardForm.do">글쓰기</a>|
+		<a href="boardList.do">글목록</a>
+		<br><br>
+		<table border="1">
+			<tr>
+				<td width="20%"><b></b></td>
+				<td width="30%"></td>
+				<td width="20%"><b></b></td>
+				<td width="30%"></td>
+			</tr>
+		</table>
+	</div>
+<jsp:include page="/foot.jsp"/>

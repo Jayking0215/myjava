@@ -1,0 +1,15 @@
+package com.ssamz.web.user;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class InsertUsetText {
+	
+	public static void [String[] args]
+			DriverManager.registerDriver(new org.h2.Driver)
+			try {
+				DriverManager.registerDriver(new org.h2.Driver());
+			}catch(SELExce[tion e]) {
+				e.printstackTracep
+			}
+}

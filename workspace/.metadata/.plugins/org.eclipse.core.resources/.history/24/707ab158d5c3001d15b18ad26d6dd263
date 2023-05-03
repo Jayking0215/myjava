@@ -1,0 +1,51 @@
+package day07;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;//awt의 서브패키지...서브패키지는 별도로 명시해야함
+
+public class MyEngine extends JFrame implements ActionListener{
+
+	Container cp;
+	JPanel p = new MyJPanel();//바깥여백 먹이기
+	JButton[] bt=new JButton[4];
+	String[] str= {"Naver", "Google","Daum","Yahoo"};//정해진 배열의 요소 선언
+
+	public MyEngine() {
+		super("::MyEngine::");
+		cp = this.getContentPane();//기본이 BorderLayout
+		cp.add(p);//기본이 CENTER
+		p.setBackground(Color.white);
+		p.setLayout(new getGridLayout(2,2,10,10));//2행2열
+
+		for(int i=0; i<bt.length; i++) {
+			bt[i]=new JButton(str[i]);
+			p.add(bt[i]);
+		}
+		
+		
+		//창닫기
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}//생성자
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj=e.getSource();
+		if(obj==b1) {
+			b1.setBackground(Color.red);
+		}else if(obj==b2) {
+			b2.setBackground(Color.green);
+		}else if(obj==b3) {
+			b3.setBackground(Color.blue);
+		}else if(obj==b4) {
+			b3.setBackground(Color.magenta);
+		}
+	}
+
+	public static void main(String[] args) {
+		MyEngine my = new MyEngine();
+		my.setSize(500, 500);
+		my.setVisible(true);
+	}
+
+}

@@ -1,0 +1,16 @@
+package day07;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class MyGui {
+
+	public MyGui() {
+	
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.user.mapper;
+
+import com.user.model.UserVO;
+
+public interface UserMapper {
+
+	int createUser(UserVO user);
+	UserVO getUser(int idx);
+}

@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<%@ page import="java.sql.*" %>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	int idx=1;
+	String title=request.getParameter("board_title");
+	String writer=request.getParameter("board_writer");
+	String content=request.getParameter("board_content");
+
+	String writeDate="2023-04-29";
+	int count=100;
+	
+	String driver="oracle.jdbc.driver.OracleDriver";
+	String url="jdbc:oracle:thin:@localhost:1521:XE";
+	String id="scott";
+	String pwd="tiger";
+	Connection con=null;
+	Statement stmt=null;
+	
+	try{
+		Class.forName(driver);
+		con=DriverManager.getConnection(url, id, pwd);
+		stmt=con.createStatement();
+		StringBuilder buf=new StringBuilder("insert into bbs")
+					.append(" board_idx, board_title, board_wirter, board_writeDate, board_count, board_content")
+					.append(" VALUES(10,'"+board_title+"', '"+board_writer+"', SYSDATE, 20, '"+board_content+"')");
+		String sql=buf.toString();
+		int rs=stmt.executeUpdate(sql);	
+		
+		if(rs==1){
+			System.out.println("insert success");
+		}else{
+			System.out.println("insert fail");
+		}
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		if(stmt!=null){
+			try{
+				stmt.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		if (con!=null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+%>
+</body>
+</html>

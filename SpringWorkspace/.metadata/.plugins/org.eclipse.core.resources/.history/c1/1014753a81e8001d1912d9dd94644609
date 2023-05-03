@@ -1,0 +1,3 @@
+Global.DbType=oracle
+Global.DriverClassName=oracle.jdbc.driver.OracleDriver
+Global.Url=jdbc:oracle:thin:@localhost:1521:XE

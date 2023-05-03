@@ -1,0 +1,17 @@
+package ex04;
+
+public class MessageImpl implements Message {
+
+	@Override
+	public void sayHello() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void sayHi(String... names) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

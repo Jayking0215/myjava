@@ -1,0 +1,28 @@
+package day07;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;//awt의 서브패키지...서브패키지는 별도로 명시해야함
+
+public class MyEngine extends JFrame {
+
+	Container cp;
+	JPanel p = new JPanel();
+
+	public MyEngine() {
+		super("::MyEngine::");
+		cp = this.getContentPane();//기본이 BorderLayout
+		cp.add(p);//기본이 CENTER
+		p.setBackground(Color.white);
+
+		//창닫기
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}//생성자
+
+	public static void main(String[] args) {
+		MyEngine my = new MyEngine();
+		my.setSize(500, 500);
+		my.setVisible(true);
+	}
+
+}

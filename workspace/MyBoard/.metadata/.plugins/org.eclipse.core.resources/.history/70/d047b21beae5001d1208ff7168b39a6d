@@ -1,0 +1,36 @@
+package com.ssamz.web.user;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class InsertUsetText {
+	
+	public static void main(String[] args) {
+		//JDBC관련 변수	
+		Connection con=null;
+		PreparedStatement stmt=null;
+
+		try {
+			//JDBC 1단계 : 드라이브 객체 로딩
+			DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+			
+			//JDBC 2단계 : 커넥션 연결
+			String jdbcUrl="jdbc:oracle:thin:@localhost:1521:XE";
+			con=DriverManager.getConnection(jdbcUrl, "scott", "tiger");
+			
+			//JDBC 3단계 : Statement 생성
+			String sql="insert into users values(?,?,?,?)";
+			stmt=con.prepareStatement(sql);
+			
+			if(con!=null) {
+				System.out.println("Driver 연결 성공: "+con.toString());
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
+

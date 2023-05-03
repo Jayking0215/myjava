@@ -1,0 +1,17 @@
+package day07;
+//이클립스 템플릿 만들기
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class MyGui {
+
+	public MyGui() {
+	
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+}

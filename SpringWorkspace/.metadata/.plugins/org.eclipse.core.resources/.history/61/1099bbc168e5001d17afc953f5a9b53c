@@ -1,0 +1,10 @@
+package ex03;
+import org.springframework.*;
+
+public class HelloApp {
+
+	public static void main(String[] args) {
+		
+	}
+
+}
