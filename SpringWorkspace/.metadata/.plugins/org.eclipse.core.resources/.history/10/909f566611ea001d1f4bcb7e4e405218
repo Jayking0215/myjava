@@ -1,0 +1,14 @@
+package com.my.myapp;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+
+import com.user.service.UserService;
+
+@Controller
+public class LoginController {
+	@Resource(name="UserService")
+	//@Autowired
+	private UserService userService;
+}

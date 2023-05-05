@@ -1,0 +1,9 @@
+package com.common;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+//servlet-context.xml에 component-scan에 패키지 등록
+@ControllerAdvice
+public class CommonExceptionAdvice {
+
+}

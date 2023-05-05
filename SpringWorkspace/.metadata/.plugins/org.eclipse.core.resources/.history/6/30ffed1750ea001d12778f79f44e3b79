@@ -1,0 +1,10 @@
+package com.shop.mapper;
+
+import com.shop.model.ProductVO;
+
+public interface ProductMapper {
+	
+	int productInsert(ProductVO item);
+	List<ProductVO> getProducts();
+	
+}

@@ -1,0 +1,24 @@
+package com.my.myapp;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/admin")//url에 admin을 달고 다닌다.
+public class AdminController {
+	
+	@GetMapping("/prodForm")//prodForm을 받아온다
+	public String productForm(Model m) {
+		
+		return "admin/prodInput";
+		//WEB-INF/views/admin/prodInput.jsp
+	}
+	
+	@PostMapping("/prodInput")
+	public String productInsert(Model m) {
+		
+	}
+}

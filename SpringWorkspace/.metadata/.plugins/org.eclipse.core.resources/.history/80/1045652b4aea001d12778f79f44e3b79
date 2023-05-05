@@ -1,0 +1,11 @@
+package com.shop.model;
+
+public class ProductVO {
+	//property
+	private String upCg_code;
+	private String upCg_name;
+
+	private String downCg_code;
+	private String downCg_name;
+	
+}

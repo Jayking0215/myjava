@@ -3,10 +3,10 @@
  */
 let win=null;
 function open_idcheck(){
-	win=window.open("idCheck","width=400, height=400, left=200, top=200");
+	win=window.open("idCheck","idCheck","width=400, height=400, left=200, top=200");
 }//--------------------------
 
-function set_id(uid){
+function set_id(uid){ 
 	//alert(uid);
 	//uid값을 부모창(window)의 userid의 value값에 전달하자
 	//팝업창에서 부모창을 참조할때는: opener (window)

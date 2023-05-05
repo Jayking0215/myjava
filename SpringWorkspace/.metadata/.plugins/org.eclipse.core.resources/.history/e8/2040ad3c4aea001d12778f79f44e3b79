@@ -1,0 +1,14 @@
+package com.shop.model;
+
+import lombok.Setter;
+
+public class ProductVO {
+	//property
+	@Setter
+	private String upCg_code;
+	private String upCg_name;
+
+	private String downCg_code;
+	private String downCg_name;
+	
+}

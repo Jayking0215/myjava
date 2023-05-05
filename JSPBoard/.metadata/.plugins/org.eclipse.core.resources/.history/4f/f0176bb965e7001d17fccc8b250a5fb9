@@ -1,5 +1,0 @@
-package memo;
-import java.sql.*;
-public class BoardVO {
-
-}

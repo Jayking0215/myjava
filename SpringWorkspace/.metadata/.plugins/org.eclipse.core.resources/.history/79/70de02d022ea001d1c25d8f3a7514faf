@@ -1,0 +1,12 @@
+package com.common;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+import lombok.extern.log4j.Log4j;
+
+//servlet-context.xml에 component-scan에 패키지 등록
+@ControllerAdvice
+@Log4j
+public class CommonExceptionAdvice {
+
+}

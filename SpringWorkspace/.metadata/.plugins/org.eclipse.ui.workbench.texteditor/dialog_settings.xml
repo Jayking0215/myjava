@@ -8,6 +8,10 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="slae"/>
+			<item value="admin"/>
+			<item value="slae`"/>
+			<item value="user"/>
 			<item value="total"/>
 			<item value="EUC-KR"/>
 		</list>

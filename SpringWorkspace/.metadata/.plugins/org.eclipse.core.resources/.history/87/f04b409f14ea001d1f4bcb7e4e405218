@@ -1,0 +1,28 @@
+package com.my.myapp;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.user.service.UserService;
+
+@Controller
+public class LoginController {
+	@Resource(name="UserService")
+	//@Autowired or//@Inject
+	private UserService userService;
+	
+	//@RequestMapping(value="/login",method=RequestMEthod.GET)
+	@GetMapping("/login")
+	public String loginForm() {
+		return "login/login";
+		//WEB-INF/views/login/login.jsp
+	}
+	
+	@PostMapping("/login")
+	public String loginProcess() {
+		
+	}
+}
