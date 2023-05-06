@@ -53,11 +53,11 @@ public class BoardVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getReddate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setReddate(Date reddate) {
-		this.regdate = reddate;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 	public int getCnt() {
 		return cnt;
