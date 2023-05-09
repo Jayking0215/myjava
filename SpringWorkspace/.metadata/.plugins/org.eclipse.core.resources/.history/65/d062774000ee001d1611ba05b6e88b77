@@ -1,0 +1,18 @@
+package com.common.interceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import lombok.extern.log4j.Log4j;
+
+//servlet-context.xml에 빈 등록 후 매핑한다.
+@Log4j
+public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
+	
+	@Override
+	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception{
+		log.info("AdminCheckInterceptor()...");
+	}
+}

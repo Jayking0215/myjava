@@ -1,0 +1,6 @@
+package com.my.myapp;
+
+@Controller
+public class ProductController {
+
+}

@@ -1,0 +1,25 @@
+package com.common.file;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+public class fileController {
+
+	private String upDir;
+	
+	@GetMapping("/fileForm")
+	public String fileForm() {
+		return "file/fileForm";
+		//WEB-INF/views/fileForm.jsp
+	}
+	
+	@PostMapping("/fileUp")
+	public String fielUpload(Model m) {
+		
+		return "file/fileResult";
+		//WEB-INF/views/fileResult.jsp
+	}
+	
+	
+}

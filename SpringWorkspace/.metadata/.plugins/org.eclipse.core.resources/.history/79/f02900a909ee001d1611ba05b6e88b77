@@ -1,0 +1,68 @@
+package com.common.file;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import lombok.extern.log4j.Log4j;
+
+/*pom.xml
+ * <!-- File Upload -->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+ * ===================================
+ * 
+ * [2] servlet-context.xml에 빈 등록
+ * 	<!-- 파일업로드를 위한 MultipartResolver 설정===================== -->
+	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.
+	다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
+	인식하질 못한다.  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8"/>
+		<beans:property name="maxUploadSize" value="-1"/>
+		<!-- -1을 주면 무제한 업로드 가능 -->
+	</beans:bean>
+	
+	<beans:bean id="upDir" class="java.lang.String">
+		<beans:constructor-arg index="0" value="C:/myjava/Upload"/>
+	</beans:bean>
+	<!-- String upDir-new String("C:/myjava/Upload");-->
+ */
+
+@Controller
+@Log4j
+public class fileController {
+
+	private String upDir;
+	
+	@GetMapping("/fileForm")
+	public String fileForm() {
+		return "file/fileForm";
+		//WEB-INF/views/fileForm.jsp
+	}
+	
+	//[1] MultipartFile을 이요하는 방법
+	//[2] MultipartHttpServletRequest를 이용하는 방법
+	@PostMapping("/fileUp")
+	public String fielUpload(Model m, @RequestParam("name") String name,
+			@RequestParam("mfilename") MultipartFile mfilename
+	) {
+		
+		return "file/fileResult";
+		//WEB-INF/views/fileResult.jsp
+	}
+	
+	
+}

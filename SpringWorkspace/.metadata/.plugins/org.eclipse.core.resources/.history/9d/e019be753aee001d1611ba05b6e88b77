@@ -1,0 +1,30 @@
+package com.shop.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.shop.model.ProductVO;
+
+@Service(name="shopServiceImpl")
+public class ShopServiceImpl implements ShopService {
+
+	@Override
+	public List<ProductVO> selectByPspec(String pspec) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductVO> selectByCategory(int cg_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ProductVO selectByPnum(int pnum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

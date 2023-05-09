@@ -1,0 +1,21 @@
+package com.my.myapp;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@Log4j
+public class ProductController {
+	
+	//pspec별로 상품목록 가져오기
+	@GetMapping("/prodPspec")
+	public String productByPspec(Model m,@RequestParam(name="pspec", defaultValue="HIT")String pspec) {
+		
+		return "shop/mallHitt";
+	}
+	
+}
