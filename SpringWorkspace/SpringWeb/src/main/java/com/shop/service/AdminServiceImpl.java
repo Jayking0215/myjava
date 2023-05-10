@@ -15,7 +15,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Inject
 	private ProductMapper prodMapper;
-	
+
 	@Override
 	public List<CategoryVO> getUpcategory() {
 		// TODO Auto-generated method stub
@@ -42,13 +42,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int productInsert(ProductVO prod) {
-		// TODO Auto-generated method stub
+		
 		return this.prodMapper.productInsert(prod);
 	}
 
 	@Override
 	public List<ProductVO> productList() {
-
 		return this.prodMapper.getProducts();
 	}
 

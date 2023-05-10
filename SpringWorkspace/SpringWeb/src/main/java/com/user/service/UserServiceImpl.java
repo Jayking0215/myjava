@@ -11,8 +11,8 @@ import com.user.mapper.UserMapper;
 import com.user.model.NotUserException;
 import com.user.model.PagingVO;
 import com.user.model.UserVO;
-
-@Service("userService")//resource name
+//서비스계층에는 @Service
+@Service("userService") //resource name
 public class UserServiceImpl implements UserService {
 	
 	@Inject
@@ -20,11 +20,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Inject
 	private UserMapper userMapper;
-	
+
 	@Override
 	public int createUser(UserVO user) {
 		//System.out.println(">>>"+userMapper);
-		//비밀번호 암호화 처리
+		//비밀번호 암호화 처리----------
 		user.setPwd(passwordEncoder.encode(user.getPwd()));
 		return userMapper.createUser(user);
 	}
@@ -44,7 +44,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean idCheck(String userid) {
 		Integer idx=userMapper.idCheck(userid);
-		if(idx==null) return true;
+		System.out.println("idx: "+idx);
+		if(idx==null) return true;		
 		return false;
 	}
 
@@ -78,8 +79,8 @@ public class UserServiceImpl implements UserService {
 		tmpUser.setUserid(userid);
 		tmpUser.setPwd(pwd);
 		UserVO dbuser=this.findUser(tmpUser);
-		if(dbuser==null) throw new NotUserException("존재하지 않는 아이디입니다.");
-		//비밀번호 일치여부 체크 <= 암호화된 비밀번호 일치여부 체크
+		if(dbuser==null) throw new NotUserException("존재하지 않는 아이디입니다");
+		//비밀번호 일치여부 체크 <=암호화된 비밀번호 일치여부 체크
 		//if(!dbuser.getPwd().equals(pwd)) {
 		boolean isMatch=passwordEncoder.matches(pwd, dbuser.getPwd());
 		System.out.println("isMatch: "+isMatch);
@@ -89,5 +90,6 @@ public class UserServiceImpl implements UserService {
 		
 		return dbuser;
 	}
+
 
 }

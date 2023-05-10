@@ -25,4 +25,5 @@ public interface UserService {
 	UserVO findUser(UserVO findUser) throws NotUserException;
 
 	UserVO loginCheck(String userid, String pwd) throws NotUserException;
+
 }

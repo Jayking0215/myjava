@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="row">
+	<div class="col-12">
+		<h2 class="text-center">${loginUser.name}[loginUser.userid]님의
+			장바구니</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<form name="orderF" id="orderF" action="order">
+			<table class="table table=striped">
+				<thead>
+					<tr>
+						<th>상품번호</th>
+						<th>상품명</th>
+						<th>수량</th>
+						<th>단가</th>
+						<th>금액</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- --------------------------------------- -->
+					<tr>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+						<td>a</td>
+					</tr>
+					<!-- --------------------------------------- -->
+					<tr>
+						<td colspan="3">
+							<h5>장바구니 총액: <span class="text-danger">1 원</span></h5>
+							<h5>장바구니 총포인트: <span class="text-success">1 Point</span></h5>
+						</td>
+						<td colspan="3">
+							<button class="btn btn-outline-info">주문하기</button>
+							<button class="btn btn-outline-danger">쇼핑 계속하기</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>

@@ -1,13 +1,13 @@
 package com.my.myapp;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +20,12 @@ import com.user.service.UserService;
 @Controller
 public class LoginController {
 	@Resource(name="userService")
-	//@Autowired or//@Inject
+	//@Autowired //@Inject
 	private UserService userService;
 	
-	//@RequestMapping(value="/login",method=RequestMEthod.GET)
+
+	
+	//@RequestMapping(value="/login",method=RequestMethod.GET)
 	@GetMapping("/login")
 	public String loginForm() {
 		return "login/login";
@@ -35,14 +37,13 @@ public class LoginController {
 			HttpServletResponse response,
 			@ModelAttribute("user") UserVO user,
 			@RequestParam(defaultValue="off") String saveId) throws NotUserException {
-		//System.out.println("id:"+user.getUserid()+", pwd: "+user.getPwd());
-		//System.out.println("saveId: "+saveId);//체크o on 체크x off
-		if(user.getUserid()==null||user.getPwd()==null||user.getUserid().trim().isEmpty()||user.getPwd().trim().isEmpty()){
+		System.out.println("saveId: "+saveId);//체크박스에 체크하면 on,체크하지 않으면 off
+		if(user.getUserid()==null||user.getPwd()==null||user.getUserid().trim().isEmpty()||user.getPwd().trim().isEmpty()) {
 			return "redirect:login";
 		}
 		UserVO loginUser=userService.loginCheck(user.getUserid(), user.getPwd());
 		//userid,pwd가 일치하지 않으면 NotUserException
-		//				일치하면 회원정보를 담은 UserVO객체를 반환한다.=>세션에 저장
+		//			   일치하면  회원정보를 담은 UserVO객체를 반환한다=> 세션에 저장
 		if(loginUser!=null) {
 			session.setAttribute("loginUser", loginUser);
 			Cookie ck=new Cookie("uid", loginUser.getUserid());
@@ -56,7 +57,7 @@ public class LoginController {
 		}
 		
 		return "redirect:index";
-	}//-----------------
+	}//--------------------
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -64,10 +65,17 @@ public class LoginController {
 		return "redirect:index";
 	}//--------------------
 	
-	//예외처리하는 메서드 앞에 @ExceptionHandler를 붙이고 구체적인 예외 클래스를 지정한다.
-	/* => CommonExceptionAdvice클래스에 모아서 처리
-	 @ExceptionHandler(NotUserException.class) public String
-	 exceptionHandler(Exception ex, Model m) { ex.printStackTrace();
-	 m.addAttribute("exception", ex); return "login/errorAlert"; }
-	 */
+	//예외처리하는 메서드 앞에 @ExceptionHandler를 붙이고 구체적인 예외 클래스를 지정한다
+	/* => CommonExceptionAdvice클래스에서 모아 처리하자
+	@ExceptionHandler(NotUserException.class)
+	public String exceptionHandler(Exception ex, Model m) {
+		ex.printStackTrace();
+		m.addAttribute("exception", ex);
+		return "login/errorAlert";
+	}
+	*/
 }
+
+
+
+

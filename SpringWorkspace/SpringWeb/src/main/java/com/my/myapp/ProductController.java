@@ -20,16 +20,29 @@ public class ProductController {
 	
 	@Inject
 	private ShopService shopService;
-	
+	 
 	//pspec별로 상품목록 가져오기
 	@GetMapping("/prodPspec")
-	public String productByPspec(Model m,@RequestParam(name="pspec", defaultValue="HIT")String pspec) {
+	public String productByPspec(Model m, @RequestParam(name="pspec", defaultValue="HIT") String pspec) {
 		log.info("pspec: "+pspec);
 		List<ProductVO> pList=shopService.selectByPspec(pspec);
 		m.addAttribute("pList",pList);
 		m.addAttribute("pspec",pspec);
-		return "shop/mallHit";
+		return "shop_module/mallHit";
 		//WEB-INF/views/shop/mallHit.jsp
 	}
 	
+	@GetMapping("/prodDetail")
+	public String productView(Model m,@RequestParam(name="pnum", defaultValue="0") int pnum) {
+		log.info("pnum="+pnum);
+		if(pnum==0) {
+			return "redirect:index";
+		}
+		ProductVO item=shopService.selectByPnum(pnum);
+		m.addAttribute("item",item);
+		
+		return "shop/prodView";
+		//WEB-INF/views/shop/prodView.jsp
+	}
+
 }

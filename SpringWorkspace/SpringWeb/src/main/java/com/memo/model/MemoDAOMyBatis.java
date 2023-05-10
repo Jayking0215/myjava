@@ -8,26 +8,26 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-//컨트롤러 계층 : @Controller, 
+//컨트롤러 계층: @Controller, 
 //서비스 계층 : @Service,
 //영속성 계층(Persistence Layer): @Repository
-//[주의] servlet-context.xml에 component-scan대상으로 패키지 등록해야함
+//[주의] servlet-context.xml에 component-scan대상으로 패키지 등록해야 함
 
 @Repository
 public class MemoDAOMyBatis implements MemoDAO {
 	
 	private final String NS="com.memo.model.MemoMapper";
-	//MemoMapper.xml에 등록된 네임스페이스와 동일해야 한다.
+	//MemoMapper.xml에 등록된 네임스페이스와 동일해야 함
 	
-	//리소스 이름으로 주입. id가 sqlSessionTemplate인 객체를 찾아서 주입
+	//리소스 이름으로 주입한다. id가 sqlSessionTemplate인 객체를 찾아서 주입한다
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate session;
-	//dataSource-context.xml에 등록되어 있음
+	//datasource-context.xml에 등록되어 있음
 
 	@Override
 	public int insertMemo(MemoVO memo) {
-		int n=session.insert(NS+".insertMemo",memo);
-		System.out.println("방금 들어온 글의 글번호: "+memo.getNo());
+		int n=session.insert(NS+".insertMemo", memo);
+		System.out.println("방금 등록된 글의 글번호: "+memo.getNo());
 		return n;
 	}
 
@@ -45,7 +45,14 @@ public class MemoDAOMyBatis implements MemoDAO {
 		
 		List<MemoVO> arr=session.selectList(NS+".listMemo", map);
 			
+		
 		return arr;
+	}
+
+	@Override
+	public int deleteMemo(int no) {
+		// delete()메서드 호출하기==>MemoMapper.xml에서 <delete>delete문 완성</delete>
+		return session.delete(NS+".deleteMemo", no);
 	}
 
 	@Override
@@ -55,16 +62,14 @@ public class MemoDAOMyBatis implements MemoDAO {
 	}
 
 	@Override
-	public int deleteMemo(int no) {
-		//session의 delete()메서드 호출==>MemoMapper.xml에서 <delete>문 완성</delete>
-		return session.delete(NS+".deleteMemo", no);
-	}
-
-	@Override
 	public MemoVO getMemo(int no) {
-		MemoVO vo=session.selectOne(NS+".getMemo",no);
+		MemoVO vo=session.selectOne(NS+".getMemo", no);
 		
 		return vo;
 	}
 
 }
+
+
+
+

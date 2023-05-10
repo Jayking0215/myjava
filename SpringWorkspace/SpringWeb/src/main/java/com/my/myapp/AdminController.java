@@ -40,16 +40,16 @@ public class AdminController {
 	}
 	@PostMapping("/prodInput")
 	public String productInsert(Model m, @ModelAttribute ProductVO item, 
-					@RequestParam("pimage") List<MultipartFile>pimage, 
-					HttpServletRequest req) {
-		//1.업로드 디렉토리 절대경로 얻기 "/resources/product_images"
+				@RequestParam("pimage") List<MultipartFile> pimage, 
+				HttpServletRequest req) {
+		//1. 업로드 디렉토리 절대경로 얻기  "/resources/product_images"
 		ServletContext app=req.getServletContext();
 		String upDir=app.getRealPath("/resources/product_images");
 		log.info("upDir: "+upDir);
 		
-		//2.업로드 처리 => 반복문 통해서 transferTo(), 업로드 파일명을 item에 setting한다. item.setPimage1(), item.setPimage2()...
+		//2. 업로드 처리 =>반복 돌면서 transferTo(), 업로드 파일명을 item에 setting한다. item.setPimage1(), item.setPimage2()...
 		if(pimage!=null) {
-			for(int i=0; i<pimage.size(); i++) {
+			for(int i=0;i<pimage.size();i++) {
 				MultipartFile mf=pimage.get(i);
 				if(!mf.isEmpty()) {//첨부파일이 있다면
 					try {
@@ -65,23 +65,22 @@ public class AdminController {
 							item.setPimage3(fname);
 						}
 						
-					} catch (IOException e) {
+					}catch(IOException e) {
 						log.error("파일 업로드 실패: "+e);
 					}
-				}
-			}//for
-		}//if--
+				}//if---
+			}//for----
+		}//if------------------------
+		 
 		
 		log.info("item=="+item);
-		int n=adminService.productInsert(item);//DB에 insert문을 실행
+		int n=adminService.productInsert(item);//DB에 insert문 실행
 		String str=(n>0)?"등록 성공":"등록 실패";
 		String loc=(n>0)?"prodList":"javascript:history.back()";
-		
 		m.addAttribute("msg",str);
 		m.addAttribute("loc",loc);
-		
 		return "message";
-	}//
+	}//--------------------------------------
 	
 	@GetMapping("/prodList")
 	public String productList(Model m) {
@@ -91,5 +90,9 @@ public class AdminController {
 		m.addAttribute("itemList", prodArr);
 		return "admin/prodList";
 	}
+	
 
 }
+
+
+

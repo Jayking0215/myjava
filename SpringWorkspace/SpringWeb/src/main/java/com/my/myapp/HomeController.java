@@ -34,9 +34,9 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";//View Name
-		// "WEB-INF/views/" => prefix(Á¢µÎ¾î)
-		// ".jsp" => suffix(Á¢¹Ì»ç)
-		//WEB-INF/views/home.jsp¸¦ ¹ÝÈ¯
+		// "/WEB-INF/views/" => prefix
+		// ".jsp" ==> suffix
+		///WEB-INF/views/home.jsp ë¥¼ ë°˜í™˜
 	}
 	
 }

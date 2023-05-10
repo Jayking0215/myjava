@@ -3,10 +3,7 @@ package com.user.model;
 import java.sql.Date;
 
 public class UserVO {
-	//property -서버에서 맴버변수를 property라고 부른다.
-	//(html input name과 db table 컬럼명과 일치시켜주면 편리 )
 	
-	//캡슐화
 	private int idx;
 	private String name;
 	private String userid;
@@ -22,14 +19,13 @@ public class UserVO {
 	
 	private java.sql.Date indate;
 	private int mileage;
-	private int mstate;//회원 상태정보(0: 활동회원, -1:정지회원, -2:탈퇴회원)
+	private int mstate;
 	private String mstateStr;
 	
 	public UserVO() {
 		
 	}
 	
-	//setter, getter
 	public int getIdx() {
 		return idx;
 	}
@@ -44,6 +40,7 @@ public class UserVO {
 
 	public void setName(String name) {
 		this.name = name;
+		System.out.println("setName(): "+name);
 	}
 
 	public String getUserid() {
@@ -52,6 +49,7 @@ public class UserVO {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+		System.out.println("setUserid(): "+userid);
 	}
 
 	public String getPwd() {
@@ -129,25 +127,19 @@ public class UserVO {
 	public int getMstate() {
 		return mstate;
 	}
-
 	public void setMstate(int mstate) {
 		this.mstate = mstate;
 	}
-
 	public String getMstateStr() {
 		return mstateStr;
 	}
-
 	public void setMstateStr(String mstateStr) {
 		this.mstateStr = mstateStr;
 	}
-	
 	public String getAllHp() {
 		return hp1+"-"+hp2+"-"+hp3;
 	}
 	public String getAllAddr() {
 		return "["+post+"] "+addr1+" "+addr2;
 	}
-	
-	
-}///////////////////////////////
+}///////////////////////////////////

@@ -1,0 +1,7 @@
+package com.shop.mapper;
+
+public interface CartMapper {
+
+	Integer selectCartCountByPnum()
+	//회원번호, 상품번호
+}
