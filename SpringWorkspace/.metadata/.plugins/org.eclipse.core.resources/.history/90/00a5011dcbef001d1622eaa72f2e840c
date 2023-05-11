@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="row my-3">
+	<div class="col-12 text-center">
+		<h2>Spring Board</h2>
+		<p>
+			<a href="write">글쓰기</a>|<a href="list">글목록</a>
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-10 offset-1">
+		<table class="table table-condensed table-striped">
+			<thead>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>날짜</th>
+				<th>조회수</th>
+			</thead>
+			<tbody>
+			<!-- ------------------------------------ -->
+			<tr>
+				<td>a</td>
+				<td>a</td>
+				<td>a</td>
+				<td>a</td>
+				<td>a</td>
+				<td>a</td>
+			</tr>
+			<!-- ------------------------------------ -->
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">페이지 네비</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

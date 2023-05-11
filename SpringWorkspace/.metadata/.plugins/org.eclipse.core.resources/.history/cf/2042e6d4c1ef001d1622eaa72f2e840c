@@ -1,0 +1,48 @@
+package com.my.myapp;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.board.model.BoardVO;
+import com.board.service.BoardService;
+import com.common.CommonUtil;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@RequestMapping("/board")
+@Log4j
+public class BoardController {
+	
+	@Resource(name="boardService")
+	private BoardService boardService;
+	
+	@Autowired
+	private CommonUtil util;
+
+	@GetMapping("/write")
+	public String boardForm() {
+		
+		return "board/boardWrite";
+		//WEB-INF/views/board/boardWrite.jsp
+	}
+	
+	@PostMapping("/write")
+	public String boardInsert(Model m, @ModelAttribute BoardVO board) {
+		log.info("board=="+board);
+		//1. 파일 업로드 처리
+		
+		//2. 유효성체크(제목, 작성자, 비번)=>redirect:"/write"
+		
+		//3. boardService의 insertBoard()호출
+		return util.addMsgLoc(m, "write test", "list");
+	}
+	
+}

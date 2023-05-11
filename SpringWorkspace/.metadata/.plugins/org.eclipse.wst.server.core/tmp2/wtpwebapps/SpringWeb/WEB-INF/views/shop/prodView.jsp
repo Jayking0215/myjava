@@ -6,28 +6,31 @@
 <script>
 	const openPop=function(img){
 		//alert(img)
-		let url='resources/produc_images/'+img;
+		let url='resources/product_images/'+img;
 		let obj=new Image();
 		obj.src=url;
 		let w=obj.width;
 		let h=obj.height;
-		consol.log('w: '+w", h: "+h)
+		console.log('w: '+w+", h: "+h);
 		
 		window.open(url,'imgView',`width=${w}px, height=${h}px, left=100px, top=100px`)
 	}//----------------------------
 	 
 	const goCart=function(){
 		//pnum, oqty가 파라미터로 넘어감
-		frm.action="user/cartAdd"
-		//frm.method="get";//나중에 post로 수정해야함
+		frm.action="user/cartAdd";
+		//frm.method="get";//나중에 post로 수정하자
 		frm.submit();
 		
 	}
 	const goOrder=function(){
+		//attr(속성명,값): 정적인 속성값을 설정할때
+		//prop(속성명,값): 기능적인 속성값을 설정할때
 		//pnum, pqty가 파라미터로 넘어감
 		$('#frm').prop("action",'user/order');
 		//$('#frm').prop('method','get');
 		$('#frm').submit();
+		
 		
 	}
 	const goWish=function(){
@@ -36,6 +39,8 @@
 	}
 	
 </script>
+
+
 		
 		<div class="row">
          <div class="col-md-12">
@@ -59,24 +64,24 @@
                         <h4>
                            <span class="badge badge-danger">${item.pspec}</span>
                         </h4> 
-                        	상품번호: ${item.pnum } <br> 
-                        	상품이름: ${item.pname } <br> 
+                        	상품번호: ${item.pnum} <br> 
+                        	상품이름: ${item.pname} <br> 
                         	정가:<del>
-                            <fmt:formatNumber value="${item.price }" pattern="###,###" />
+                            <fmt:formatNumber value="${item.price}" pattern="###,###" />
                         	</del>원<br> 
                         	판매가:<span style="color: red; font-weight: bold">
-                           <fmt:formatNumber value="${item.saleprice }" pattern="###,###" />
+                           <fmt:formatNumber value="${item.saleprice}" pattern="###,###" />
                      			</span>원<br> 
-                     	    할인율:<span style="color: red">${item.percent } %</span><br>
+                     	    할인율:<span style="color: red">${item.percent} %</span><br>
 
-                        POINT:<b style="color: green">[${item.point }]</b>POINT<br>
+                        POINT:<b style="color: green">[${item.point}]</b>POINT<br>
 
                         <!-- form시작---------- -->
                         <form name="frm" id="frm" method="POST">
                            <!-- 상품번호를 hidden으로 넘기자------ -->
-                           <input type="hidden" name="pnum" value="${item.pnum }">
+                           <input type="hidden" name="pnum" value="${item.pnum}">                           
                            <!-- -------------------------------- -->
-                           <label for="pqty">상품갯수</label> 
+                           <label for="oqty">상품갯수</label> 
                            <input type="number" name="pqty"
                               id="pqty" min="1" max="50" size="2" value="1">
 
@@ -92,10 +97,10 @@
                   </tr>
                   <tr style="border: 0">
                      <td align="center">
-                     	<img src="resources/product_images/${item.pimage2 }"
+                     	<img src="resources/product_images/${item.pimage2}"
                         class="img img-thumbnail" style="width: 70%;"></td>
                      <td align="center">
-                     	<img src="resources/product_images/${item.pimage3 }"
+                     	<img src="resources/product_images/${item.pimage3}"
                         class="img img-thumbnail" style="width: 70%;"></td>
                   </tr>
                   <tr>
@@ -110,7 +115,11 @@
          </div>
       </div><!--.row end  -->
       
-      <!-- 리뷰 글쓰기--------------------------- -->
+      <!-- 리뷰 글쓰기 -------------------------- -->
       
-      <!-- 리뷰 목록---------------------------- -->
+      <!-- 리뷰 목록 ---------------------------- -->
       
+      
+      
+      
+     

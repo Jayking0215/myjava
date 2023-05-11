@@ -15,6 +15,7 @@ import com.shop.service.ShopService;
 
 @Controller
 public class IndexController {
+	
 	@Inject
 	private ShopService shopService;
 	//뷰네임을 반환하지 않으면(void)
@@ -27,12 +28,15 @@ public class IndexController {
 	public void showIndex(Model m) {
 		
 		List<ProductVO> pList=shopService.selectByPspec("HIT");
+		
 		List<ProductVO> pList2=shopService.selectByPspec("NEW");
-		m.addAttribute("pList1",pList);
+		
 		m.addAttribute("pspec1","HIT");
-		m.addAttribute("pList2",pList2);
 		m.addAttribute("pspec2","NEW");
 		
+		m.addAttribute("pList1",pList);
+		m.addAttribute("pList2",pList2);
+		//WEB-INF/views/index.jsp
 	}
 
 }

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 	
 	<div class="container" style="text-align:center">
-		<%-- ${itemList} <%-- 상품리스트 받아오는지 테스트 --%>--%>
+		<%-- ${itemList} <%-- 상품리스트 받아오는지 테스트 --%>
 		<div class="row">
         <div class="col-md-12">
            <h2 class="text-center m-4" style="margin:1em">::Product List [Admin Page]:::</h2>
