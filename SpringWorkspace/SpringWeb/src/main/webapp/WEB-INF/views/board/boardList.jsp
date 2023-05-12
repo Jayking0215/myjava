@@ -34,7 +34,33 @@
 						<c:out value="${board.num}"/>						
 					</td>
 					<td>
-						<c:out value="${board.subject}"/>
+					<!-- 답변 레벨에 따라 들여쓰기 -->
+					<c:forEach var="k" begin="0" end="${board.lev}">
+						&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					<c:if test="${board.lev>0}">
+						<img src="../images/re.png">
+					</c:if>
+					
+					<!-- 글제목 --------------------------------- -->
+					
+					<!-- 
+						prodDetail?pnum=1 =>@RequestParam("pnum")
+						prodDetail/1 ==> @ParhVariable("pnum")
+						
+						board/list
+						board/write
+						board/view/글번호 ==> @PathVariable("num")
+					 -->
+						<a href="view/<c:out value="${board.num}"/>"><c:out value="${board.subject}"/></a>
+						<!-- 첨부파일 여부 -------------------->
+						<c:if test="${board.filesize > 0}">
+						<span class="float-right">
+							<img src="../images/attach.jpg" style="width:20px"
+							title="<c:out value="${board.originFilename}"/>">
+						</span>
+						</c:if>
+						<!-- ------------------------------ -->
 					</td>
 					<td>
 						<c:out value="${board.userid}"/>
@@ -52,7 +78,17 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3">페이지 네비</td>
+					<td colspan="3" class="text-center">
+					<ul class="pagination">
+						<c:forEach var="i" begin="1" end="${pageCount}">
+							<li class="page-item <c:if test="${i eq cpage}">active</c:if>">
+							<a class="page-link" href="list?cpage=<c:out value="${i}"/>">
+								<c:out value="${i}"/>
+							</a>
+							</li>
+						</c:forEach>
+					</ul>
+					</td>
 					<td colspan="2">
 						총 게시글수: <span class="text-primary">${totalCount} 개</span><br>
 						<span class="text-danger">cpage</span>/ 페이지수 pages

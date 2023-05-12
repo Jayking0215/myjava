@@ -2,8 +2,9 @@
 <typeInfoHistroy>
     <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;ex04{Message.java[Message" modifiers="513" timestamp="1682648687677"/>
     <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;ex05{Emp.java[Emp" modifiers="513" timestamp="1682656117533"/>
-    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.memo.model{MemoDAO.java[MemoDAO" modifiers="513" timestamp="1683011010483"/>
-    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.user.service{UserService.java[UserService" modifiers="513" timestamp="1683092581572"/>
-    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shop.service{AdminService.java[AdminService" modifiers="513" timestamp="1683185990450"/>
-    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shop.service{ShopService.java[ShopService" modifiers="513" timestamp="1683685181311"/>
+    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.memo.model{MemoDAO.java[MemoDAO" modifiers="513" timestamp="1683708179374"/>
+    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.user.service{UserService.java[UserService" modifiers="513" timestamp="1683708533267"/>
+    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shop.service{AdminService.java[AdminService" modifiers="513" timestamp="1683769711337"/>
+    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.shop.service{ShopService.java[ShopService" modifiers="513" timestamp="1683708435445"/>
+    <typeInfo handle="=SpringWeb/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.board.service{BoardService.java[BoardService" modifiers="513" timestamp="1683794904511"/>
 </typeInfoHistroy>

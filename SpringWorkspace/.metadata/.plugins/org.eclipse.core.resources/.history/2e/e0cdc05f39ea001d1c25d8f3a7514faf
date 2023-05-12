@@ -1,8 +1,0 @@
-package com.common;
-
-public class Snippet {
-	public static void main(String[] args) {
-		queries
-	}
-}
-

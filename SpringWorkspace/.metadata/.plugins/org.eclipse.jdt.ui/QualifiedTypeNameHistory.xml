@@ -9,7 +9,8 @@
     <fullyQualifiedTypeName name="com.shop.mapper.ProductMapper"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.user.model.UserVO"/>
     <fullyQualifiedTypeName name="com.shop.model.CartVO"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.board.model.PagingVO"/>
 </qualifiedTypeNameHistroy>
