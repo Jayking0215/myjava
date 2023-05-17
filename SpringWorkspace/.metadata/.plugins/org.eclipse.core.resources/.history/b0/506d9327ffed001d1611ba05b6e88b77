@@ -1,5 +1,0 @@
-package com.common.interceptor;
-//servlet-context.xml에 빈 등록 후 매핑한다.
-public class AdminCheckInterceptor {
-
-}
