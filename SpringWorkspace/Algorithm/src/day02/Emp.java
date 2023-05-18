@@ -6,6 +6,7 @@ import java.util.Comparator;
 public class Emp {
 	
 	public static final Comparator<Emp> Height_Order=new HeightComparator();
+	public static final Comparator<Emp> Name_Order=new NameComparator();
 	
 	private String name;//이름
 	private int height;//키
@@ -32,6 +33,12 @@ public class Emp {
 			}
 			//return e1.height-e2.height;//오름차순
 			//return e2.height-e1.height;//내림차순
+		}
+	}
+	//이름 오름차순으로 정렬
+	static class NameComparator implements Comparator<Emp>{
+		public int compare(Emp e1, Emp e2) {
+			return e1.name.compareTo(e2.name);
 		}
 	}
 
