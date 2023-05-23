@@ -27,7 +27,8 @@
     <fullyQualifiedTypeName name="day02.Emp"/>
     <fullyQualifiedTypeName name="day03.MyLinkedList"/>
     <fullyQualifiedTypeName name="day03.MyLinkedList.Node"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
 </qualifiedTypeNameHistroy>
