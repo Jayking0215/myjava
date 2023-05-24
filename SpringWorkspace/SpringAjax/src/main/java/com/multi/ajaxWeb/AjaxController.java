@@ -1,12 +1,18 @@
 package com.multi.ajaxWeb;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.multi.domain.UserVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -32,7 +38,7 @@ public class AjaxController {
 			return "100|서울 마포구 상수동|홍길동";
 		}
 	}//------------------------------
-	@GetMapping(value="/ajaxPizza", produces="application/json")
+	@GetMapping(value="/ajaxPizza", produces="application/xml")
 	@ResponseBody
 	public Map<String,String> ajaxXml(@RequestParam(defaultValue = "") String phone){
 		log.info("phone="+phone);
@@ -42,9 +48,44 @@ public class AjaxController {
 		map.put("addr", "서울 마포구 합정동");
 		
 		return map;
+	}//---------------------------------
+	
+	@GetMapping(value="/ajaxVO", produces = "application/json")
+	@ResponseBody
+	public UserVO ajaxVO(@RequestParam(defaultValue="0")int num, @RequestParam(defaultValue="아무개")String name) {
+		log.info("num: "+num+", name: "+name);
+		UserVO user=new UserVO(num, name,"010-8585-7777","서울 강남구 삼성동");
+		return user;
 	}
+	
+	@PostMapping(value="/ajaxList",produces="application/json")
+	@ResponseBody
+	public List<UserVO> ajaxList(@RequestParam(defaultValue="0")int num, @RequestParam(defaultValue="아무개")String name){
+		log.info("num: "+num+", name: "+name);
+		List<UserVO> arr=new ArrayList<>();
+		arr.add(new UserVO(num,name,"1111","서울"));
+		arr.add(new UserVO(200,"이영희","2222","부산"));
+		arr.add(new UserVO(300,"손길동","3333","광주"));
+		return arr;
+	} 
+	
+	@PostMapping(value="/ajaxJsonParam",produces="application/json")
+	@ResponseBody
+	public List<UserVO> ajaxJsonParam(@RequestBody UserVO vo){
+		log.info("vo="+vo);
+		List<UserVO> arr=new ArrayList<>();
+		arr.add(new UserVO(vo.getNum(),vo.getName(),"1111","서울"));
+		arr.add(new UserVO(200,"이영희","2222","부산"));
+		arr.add(new UserVO(300,"손길동","3333","광주"));
+		return arr;
+	}
+	
 
 }
+
+
+
+
 
 
 
