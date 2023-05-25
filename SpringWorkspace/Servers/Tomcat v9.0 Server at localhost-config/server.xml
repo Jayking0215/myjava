@@ -153,7 +153,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
         
 
-      <Context docBase="SpringAjax" path="/ajaxWeb" reloadable="true" source="org.eclipse.jst.jee.server:SpringAjax"/></Host>
+      <Context docBase="SpringAjax" path="/" reloadable="true" source="org.eclipse.jst.jee.server:SpringAjax"/></Host>
     </Engine>
   </Service>
 </Server>

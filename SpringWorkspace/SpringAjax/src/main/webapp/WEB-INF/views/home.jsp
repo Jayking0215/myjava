@@ -92,6 +92,45 @@
   			
   		})//--------------------------
   		
+  		//ajax로 파일업로드 처리 -post
+  		$('#frm').submit((e)=>{
+  			e.preventDefault();
+  			//첨부파일명을 알아보자
+  			let file=$('#filename')[0]
+  			console.dir(file.files);
+  			if(file.files.length==0){
+  				alert('첨부파일을 선택하세요')
+  				return;
+  			}
+  			//post방식으로 파일을 첨부해서 보낼때는 파라미터 데이터들을 FormData에 담아서 보내야 한다.
+  			let frmData=new FormData();
+  			frmData.append('name',$('#name').val())
+  			frmData.append('msg',$('#msg').val())
+  			frmData.append('filename',file.files[0])
+  			//alert(JSON.stringify(frmData))
+  			//post, ajaxFile
+  			$.ajax({
+  				type:'post',
+  				url:'ajaxFile',
+  				data:frmData,
+  				contentType:false,//multipart/formdata로 보내려면 false로 지정해야 한다.
+  				processData:false//기본값:true=>데이터를 쿼리스트링으로 변환해서 전송한다는 의미
+  			}).done((res)=>{
+  				//alert(JSON.sringify(res))
+  				if(res.result=='OK'){
+  					let str='<div class="alert alert-success">';
+	  					str+='<h3>'+res.filename+"파일 업로드 성공</h3>";
+	  					str+='</div>';
+  					$('#result').html(str);
+  				}
+  			}).fail((err)=>{
+  				alert(err.status)
+  			})
+  			
+  			
+  			
+  		})
+  		
   	})//$() end--------------
   </script>
 </head>
@@ -107,6 +146,14 @@
 	<button id="btn1">ajax(VO)-json</button> 
 	<button id='btn2'>ajax(List)-json(기존 파라미터 형식으로 데이터 보내기)</button>
 	<button id='btn3'>ajax(List)-json(json형태의 파라미터 데이터 보내기)</button>
+	<hr>
+	<h3>Ajax 파일 업로드</h3>
+	<form id="frm" method="post" enctype="multipart/form-data">
+		올린이:<input type="text" name="name" id="name"><br><br> 
+		메시지:<input type="text" name="msg" id="msg"><br><br>
+		첨부파일:<input type="file" name="filename" id="filename"><br><br>
+		<button class='btn btn-primary'>업로드</button>
+	</form>
 	<hr>
 	<div id='result'>
 	
