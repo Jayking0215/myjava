@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="com.user.model.UserVO"/>
     <fullyQualifiedTypeName name="com.shop.model.CartVO"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="com.zaxxer.hikari.HikariDataSource"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletRegistration"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletRegistration.Dynamic"/>
@@ -33,4 +32,6 @@
     <fullyQualifiedTypeName name="java.util.Collections"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 </qualifiedTypeNameHistroy>
