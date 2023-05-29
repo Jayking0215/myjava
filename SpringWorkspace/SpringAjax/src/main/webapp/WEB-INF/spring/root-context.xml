@@ -6,18 +6,15 @@
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- DBCP -->
+	<!-- DBCP -->	
 	<!-- DBCP 커넥션풀빈 등록 -->
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@Localhost:1521:XE" />
-		<property name="username" value="multishop" />
-		<property name="password" value="tiger" />
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="username" value="c##multishop"/>
+		<property name="password" value="tiger"/>
 	</bean>
 	
 	<!-- MyBatis -->
@@ -32,4 +29,5 @@
 		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
 	</bean>
 	<mybatis-spring:scan base-package="com.multi.mapper"/>
+	
 </beans>

@@ -10,16 +10,8 @@
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers 
-	debug > info > warn > error
-	-->
-	<logger name="com.my.myapp">
-		<level value="info" />
-	</logger>
-	<logger name="com.board.mapper">
-		<level value="debug" />
-	</logger>
-	<logger name="com.common">
+	<!-- Application Loggers -->
+	<logger name="com.multi.mongoweb">
 		<level value="info" />
 	</logger>
 	

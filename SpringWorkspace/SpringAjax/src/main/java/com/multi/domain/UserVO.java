@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor //ì¸ììƒì„±ì
-@NoArgsConstructor //ê¸°ë³¸ìƒì„±ì
+@AllArgsConstructor //ÀÎÀÚ»ı¼ºÀÚ
+@NoArgsConstructor //±âº»»ı¼ºÀÚ
 public class UserVO {
 	
 	private int num;

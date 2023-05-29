@@ -20,26 +20,39 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public BookVO getBookInfo(String isbn) {
-		
 		return bMapper.getBookInfo(isbn);
 	}
 
 	@Override
 	public int insertBook(BookVO book) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int updateBook(BookVO book) {
-		// TODO Auto-generated method stub
-		return 0;
+		return bMapper.updateBook(book);
 	}
 
 	@Override
-	public int deleteBook(String isbn) {
+	public int deleteBook(String isbn) {		
+		return bMapper.deleteBook(isbn);
+	}
+
+	@Override
+	public List<BookVO> getPublishList() {
+		
+		return bMapper.getPublishList();
+	}
+
+	@Override
+	public List<BookVO> getTitleList(String publish) {
+		return bMapper.getTitleList(publish);
+	}
+
+	@Override
+	public List<BookVO> getFindBook(String title) {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 }
