@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-3.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -23,13 +25,46 @@
 	
 	<context:component-scan base-package="com.multi" />
 	
-	<!-- 파일업로드를 위한  MultipartResolver 설정 =============================== -->
-	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
-	인식하질 못한다.  -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="defaultEncoding" value="utf-8"/>
-		<beans:property name="maxUploadSize" value="-1"/>
-		<!-- -1을 주면 무제한 업로드 가능 -->
+	<!-- MongoDB setting==============  -->
+	<mongo:mongo-client id="mongoClient" host="localhost" port="27017" />	
+	<mongo:db-factory id="mongoDbFactory" mongo-client-ref="mongoClient" dbname="mydb" />
+	
+	<!-- mongodb에 _class필드를 저장하지 않기 위한 설정 -->
+	<beans:bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
+	
+	<beans:bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+		<beans:constructor-arg name="typeKey">
+			<beans:null/>
+		</beans:constructor-arg>
 	</beans:bean>
 	
+	
+	<beans:bean id="mappingMongoConverter" class="org.springframework.data.mongodb.core.convert.MappingMongoConverter">
+		<beans:constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<beans:constructor-arg name="mappingContext" ref="mappingContext"/>
+		<beans:property name="typeMapper" ref="defaultMongoTypeMapper"/>	
+	</beans:bean>
+	
+	<beans:bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<beans:constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<beans:constructor-arg name="mongoConverter" ref="mappingMongoConverter"/>
+	</beans:bean>
+	
+	<beans:bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+		
+	<!-- ====================== -->	
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

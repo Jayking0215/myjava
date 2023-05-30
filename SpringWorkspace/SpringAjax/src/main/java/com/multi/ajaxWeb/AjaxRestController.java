@@ -53,8 +53,16 @@ public class AjaxRestController {
 		return mv;
 	}
 	@GetMapping(value="/books",produces="application/json")
-	public List<BookVO> bookAll(){
+	public List<BookVO> bookAll(@RequestParam(defaultValue="") String keword){
+		log.info("keyword=="+keword);
+		
 		List<BookVO> arr = bService.getAllBook();
+		if(keword.isEmpty()) {//keyword가 없다면 모든 도서정보 가져오기
+			arr=bService.getAllBook();
+		}else {
+			//검색한 도서정보 가져오기
+			arr=bService.getFindBook(keword);
+		}
 		return arr;
 	}
 

@@ -153,7 +153,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
         
 
-      <Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\SpringAjax" path="" reloadable="true" source="org.eclipse.jst.jee.server:SpringAjax"/><Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\SpringMongo" path="/mongoweb" reloadable="true" source="org.eclipse.jst.jee.server:SpringMongo"/></Host>
+      <Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\SpringAjax" path="" reloadable="true" source="org.eclipse.jst.jee.server:SpringAjax"/></Host>
     </Engine>
   </Service>
 </Server>

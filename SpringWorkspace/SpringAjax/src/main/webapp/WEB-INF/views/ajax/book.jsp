@@ -30,11 +30,12 @@ select{
 		getAllBook();
 	});
 	//GET  /books :모든 도서정보가져오기
+	//GET  /books?keywords도서명 : 검색한 도서정보 
 	//GET  /books/isbn번호 : 특정 도서정보 가져오기
 	//POST /books : 도서정보 등록
 	//PUT  /books/isbn번호 : 특정 도서정보 수정하기
 	//DELETE /books/isbn번호 : 특정 도서정보 삭제하기
-	
+	//GET  /books/find/title : 특정 도서정보 검색하기(도서 제목으로)
 	const getPublish=function(){
 		$.ajax({
 			type:'get',
@@ -94,6 +95,11 @@ select{
 			
 			$('#sel2').html(str);
 	}//----------------------------
+	
+	const bookInfo=function(vtitle){
+		//alert(vtitle);
+		
+	}
 	
 	const goDel=function(visbn){
 		//alert(visbn);
