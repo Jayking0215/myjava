@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.multi.mongoweb">
+	<logger name="com.multi.ajaxweb">
 		<level value="info" />
 	</logger>
 	

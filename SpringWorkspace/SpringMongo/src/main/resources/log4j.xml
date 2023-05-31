@@ -14,6 +14,9 @@
 	<logger name="com.multi.mongoweb">
 		<level value="info" />
 	</logger>
+	<logger name="com.multi.mapper">
+		<level value="info" />
+	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">

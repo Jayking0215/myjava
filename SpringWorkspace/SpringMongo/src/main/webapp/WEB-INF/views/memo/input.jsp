@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>input.jsp</title>
 <!-- memo.css참조--------------------------------------------- -->
-<link rel="stylesheet" type="text/css" href="./css/memo.css">
+<link rel="stylesheet" type="text/css" href="./resources/memo.css">
 <!-- -------------------------------------------------------- -->
 <script type="text/javascript">
 	function check(){
@@ -35,8 +35,8 @@
 <body>
 <div id="wrap">
 <!--
-	/memo => get방식이면 메모등록 폼을 보여주고
-	/memo => post방식이면 메모글을 등록하는 로직수행
+	/memo  => get방식이면 메모 등록 폼을 보여주고
+	/memo  => post방식이면 메모글을 등록하는 로직을 수행
  -->
 	<form name="mf" action="memo" method="post">
 		<!-- table로 화면과 같이 구성하세요 -->
