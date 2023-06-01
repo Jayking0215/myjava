@@ -12,17 +12,18 @@ public class BookNaverProxy {
 	String apiUrl="https://openapi.naver.com/v1/search/book.json";
 	
 	public String getNaverBook(String keyword, String start, String display) throws Exception{
-		 String clientId = "76VXnn_POqByfLv7o4eT"; //ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””
-	        String clientSecret = "3BLcf6RQDn"; //ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿
+		
+		 String clientId = "Fqk6lvma85ULEJC2dNpn"; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ
+	        String clientSecret = "9BaxBij80p"; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´
 
 
 	        String text = null;
 	        try {
 	            text = URLEncoder.encode(keyword, "UTF-8");
 	        } catch (UnsupportedEncodingException e) {
-	            throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨",e);
+	            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ",e);
 	        }
-	        apiUrl+="?query="+text+"&start"+start+"&display="+display;
+	        apiUrl+="?query="+text+"&start="+start+"&display="+display;
 	        System.out.println(apiUrl);
 	        
 	        URL url=new URL(apiUrl);
@@ -31,31 +32,31 @@ public class BookNaverProxy {
 	        con.setRequestProperty("X-Naver-Client-Id", clientId);
 	        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 	        
-	        int resCode=con.getResponseCode();//200:ì„±ê³µ,404:ì‹¤íŒ¨
+	        int resCode=con.getResponseCode();//200
 	        
-	       System.out.println("resCode: "+resCode);
-	       
-	       BufferedReader br=null;
-	       if(resCode==200) {
-	    	   br=new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
-	       }else {
-	    	   br=new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
-	       }
-	       
-	       StringBuilder buf=new StringBuilder();
-	       String str="";
-	       while((str=br.readLine())!=null) {
-	    	   buf.append(str);
-	    	   System.out.println(str);
-	       }
-	       br.close();
-	       
-	       String response=buf.toString();
-	       return response;
-	}//
-	
+	        System.out.println("resCode: "+resCode);
+	        BufferedReader br=null;
+	        if(resCode==200) {
+	        	br=new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
+	        }else {
+	        	br=new BufferedReader(new InputStreamReader(con.getErrorStream(),"UTF-8"));
+	        }
+	        
+	        StringBuilder buf=new StringBuilder();
+	        String str="";
+	        while((str=br.readLine())!=null) {
+	        	buf.append(str);
+	        	System.out.println(str);
+	        }
+	        br.close();
+	        
+	        String response=buf.toString();
+	        return response;		
+	}//---------------------------------------
+
 	public static void main(String[] args) throws Exception{
 		BookNaverProxy app=new BookNaverProxy();
-		String str=app.getNaverBook("Ajax", "1", "10");
+		String str=app.getNaverBook("Spring", "1", "10");
 	}
+	
 }
