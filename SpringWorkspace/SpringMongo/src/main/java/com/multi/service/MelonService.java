@@ -3,6 +3,7 @@ package com.multi.service;
 import java.util.List;
 
 import com.multi.domain.MelonVO;
+import com.multi.domain.SumVO;
 
 public interface MelonService {
 	
@@ -11,6 +12,8 @@ public interface MelonService {
 	
 	//수집된 멜론 목록 가져오기
 	List<MelonVO> getMelonList() throws Exception;
+
+	List<SumVO> getCntBySinger();
 	
 	
 
