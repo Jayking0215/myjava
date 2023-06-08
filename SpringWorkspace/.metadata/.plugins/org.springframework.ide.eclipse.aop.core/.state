@@ -4,4 +4,5 @@
 <aop-project name="SpringWeb"/>
 <aop-project name="SpringAjax"/>
 <aop-project name="SpringWeka"/>
+<aop-project name="MatchingBoard-master"/>
 </aop-reference-model>

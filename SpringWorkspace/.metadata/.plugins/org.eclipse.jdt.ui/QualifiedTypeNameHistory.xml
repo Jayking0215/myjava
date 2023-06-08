@@ -41,7 +41,9 @@
     <fullyQualifiedTypeName name="javax.swing.text.Document"/>
     <fullyQualifiedTypeName name="com.mongodb.client.AggregateIterable"/>
     <fullyQualifiedTypeName name="com.mongodb.client.MongoCursor"/>
-    <fullyQualifiedTypeName name="weka.core.converters.ConverterUtils.DataSource"/>
+    <fullyQualifiedTypeName name="weka.classifiers.Classifier"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="weka.classifiers.Evaluation"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="weka.core.converters.ConverterUtils.DataSource"/>
 </qualifiedTypeNameHistroy>
