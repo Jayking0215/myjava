@@ -153,7 +153,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
         
 
-      <Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\MatchingBoard-master" path="/matchingBoard" reloadable="true" source="org.eclipse.jst.jee.server:MatchingBoard-master"/></Host>
+      <Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\myjava\SpringWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\MatchingBoard" path="/matchingBoard" reloadable="true" source="org.eclipse.jst.jee.server:MatchingBoard"/></Host>
     </Engine>
   </Service>
 </Server>
