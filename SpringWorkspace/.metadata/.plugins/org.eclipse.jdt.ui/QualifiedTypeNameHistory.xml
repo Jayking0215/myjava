@@ -36,14 +36,19 @@
     <fullyQualifiedTypeName name="javax.lang.model.util.Elements"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.common.CommonUtil"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="com.mongodb.client.MongoCollection"/>
     <fullyQualifiedTypeName name="javax.swing.text.Document"/>
     <fullyQualifiedTypeName name="com.mongodb.client.AggregateIterable"/>
     <fullyQualifiedTypeName name="com.mongodb.client.MongoCursor"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="weka.classifiers.functions.Logistic"/>
+    <fullyQualifiedTypeName name="weka.core.SerializationHelper"/>
     <fullyQualifiedTypeName name="weka.classifiers.Classifier"/>
+    <fullyQualifiedTypeName name="weka.core.converters.ConverterUtils.DataSource"/>
+    <fullyQualifiedTypeName name="weka.classifiers.functions.LinearRegression"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="weka.classifiers.Evaluation"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="weka.core.converters.ConverterUtils.DataSource"/>
+    <fullyQualifiedTypeName name="weka.filters.Filter"/>
+    <fullyQualifiedTypeName name="weka.core.Attribute"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>
