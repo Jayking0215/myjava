@@ -6,4 +6,5 @@
 <aop-project name="SpringWeka"/>
 <aop-project name="MatchingBoard-master"/>
 <aop-project name="MatchingBoard"/>
+<aop-project name="SpringNCPAi"/>
 </aop-reference-model>
