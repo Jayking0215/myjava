@@ -51,4 +51,6 @@
     <fullyQualifiedTypeName name="weka.filters.Filter"/>
     <fullyQualifiedTypeName name="weka.core.Attribute"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.PropertySource"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
 </qualifiedTypeNameHistroy>
